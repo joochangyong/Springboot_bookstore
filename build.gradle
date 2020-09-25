@@ -18,17 +18,33 @@ repositories {
 	mavenCentral()
 }
 
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-mustache'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'    // 스프링부트용 Spring Data Jpa 추상화 라이브러리, 버전에 맞춰 자동으로 JPA관련 라이브러리들의 버전을 관리
+	implementation 'org.springframework.boot:spring-boot-starter-mustache'    // mustache
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' // 소셜 로그인
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.h2database:h2'
+	implementation 'org.testng:testng:6.14.3'// web
+	compileOnly 'org.projectlombok:lombok'                           // lombok
+	runtimeOnly 'com.h2database:h2'                                 // 인메모리 관계형 디비
+
+	compile('org.springframework.session:spring-session-jdbc')  // 세션 저장소를 데이터베이스 jdbc를 사용하는 의존성 추가
+
+	// swagger
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+	runtimeOnly 'mysql:mysql-connector-java'
+
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile("org.springframework.security:spring-security-test")
+
 }
 
 test {
