@@ -1,0 +1,40 @@
+{{>layout/header}}
+<h1>회원가입</h1>
+<div class="col-md-12">
+    <div class="col-md-4">
+        <form action="/users/signUp" method="post">
+            <div class="form-group">
+                <label for="id">아이디</label>
+                <input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="pw">비밀번호</label>
+                <input type="password" class="form-control" id="pw" placeholder="비밀번호를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="name"> 이름 </label>
+                <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="sex"> 성별 </label>
+                <input type="text" class="form-control" id="sex" placeholder="성별을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="num"> 전화번호 </label>
+                <input type="text" class="form-control" id="num" placeholder="전화번호를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="mail"> 메일 </label>
+                <input type="email" class="form-control" id="mail" placeholder="메일주소를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="nic_name"> 닉네임 </label>
+                <input type="text" class="form-control" id="nic_name" placeholder="닉네임을 입력하세요">
+            </div>
+        </form>
+        <a href="/" role="button" class="btn btn-secondary">취소</a>
+        <button type="button" class="btn btn-primary" id="btn-save">회원가입완료</button>
+
+    </div>
+</div>
+{{>layout/footer}}

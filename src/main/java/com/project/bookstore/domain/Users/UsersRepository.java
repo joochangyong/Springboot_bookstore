@@ -1,4 +1,4 @@
-package com.project.bookstore.domain.book;
+package com.project.bookstore.domain.Users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
