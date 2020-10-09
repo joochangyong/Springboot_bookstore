@@ -26,6 +26,7 @@ apply plugin: 'io.spring.dependency-management'
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'    // 스프링부트용 Spring Data Jpa 추상화 라이브러리, 버전에 맞춰 자동으로 JPA관련 라이브러리들의 버전을 관리
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'	//mybatis
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'    // mustache
 //	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client' // 소셜 로그인
 	implementation 'org.springframework.boot:spring-boot-starter-web'
