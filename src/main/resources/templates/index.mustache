@@ -3,7 +3,14 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
-            <a href="/users/signUp" role="button" class="btn btn-primary">회원가입</a>
+<!--            {{#name}}-->
+<!--                Logged in as: <span id="user">{{name}}</span>-->
+<!--                <a href="/" role="button" class="btn btn-info active" >로그아웃</a>-->
+<!--            {{/name}}-->
+<!--            {{^name}}-->
+                <a href="/users/signIn" role="button" class="btn btn-primary">로그인</a>
+                <a href="/users/signUp" role="button" class="btn btn-primary">회원가입</a>
+<!--            {{/name}}-->
         </div>
     </div>
 </div>

@@ -5,6 +5,11 @@ var main = {
             _this.save();
         });
 
+        $('#btn-login').on('click', function () {
+            _this.login();
+        });
+
+
 //        $('#btn-update').on('click', function () {
 //            _this.update();
 //        });
@@ -22,13 +27,12 @@ var main = {
             num: $('#num').val(),
             mail: $('#mail').val(),
             nic_name: $('#nic_name').val()
-
         };
 
         $.ajax({
             type: 'POST',
-            url: '/api/v1/users',
-            dataType: 'json',
+            url: '/api/users/signUp',
+            dataType: 'text',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
@@ -38,6 +42,26 @@ var main = {
             alert(JSON.stringify(error));
         });
     },
+
+    login : function () {
+            var data = {
+                id: $('#id').val(),
+                pw: $('#pw').val()
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/api/users/signIn',
+                dataType: 'text',
+                contentType:'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function() {
+                alert('로그인 되었습니다..');
+                window.location.href = '/';
+            }).fail(function (error) {
+                alert(JSON.stringify(error));
+            });
+        },
 //    update : function () {
 //        var data = {
 //            title: $('#title').val(),

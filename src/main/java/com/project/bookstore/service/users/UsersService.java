@@ -1,7 +1,10 @@
 package com.project.bookstore.service.users;
 
+import com.project.bookstore.domain.Users.UsersMapperRepository;
 import com.project.bookstore.domain.Users.UsersRepository;
-import com.project.bookstore.web.dto.UsersDto;
+import com.project.bookstore.web.dto.UsersInfoDto;
+import com.project.bookstore.web.dto.UsersSignInDto;
+import com.project.bookstore.web.dto.UsersSignUpDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +15,14 @@ import javax.transaction.Transactional;
 
 public class UsersService {
     private final UsersRepository usersRepository;
+    private final UsersMapperRepository usersMapperRepository;
 
     @Transactional
-    public String save(UsersDto requestDto) {
+    public String save(UsersSignUpDto requestDto) {
         return usersRepository.save(requestDto.toEntity()).getId();
+    }
+
+    public UsersInfoDto usersSign(UsersSignInDto signInDto) {
+        return usersMapperRepository.usersSign(signInDto);
     }
 }
