@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
 
 @RequiredArgsConstructor
 @Service
-
 public class UsersService {
     private final UsersRepository usersRepository;
     private final UsersMapperRepository usersMapperRepository;

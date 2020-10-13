@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
+
 @Api(value = "회원", description = "로그인 관리", tags = { "회원" })
 @CrossOrigin("*")
 @RequiredArgsConstructor
@@ -39,7 +41,7 @@ public class UsersApiController {
             @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
             @ApiImplicitParam(name = "content", value = "로그인", required = true, dataType = "string", paramType = "query", defaultValue = ""), })
     @PostMapping("/api/users/signIn")
-    public ResponseEntity<?> signin(@RequestBody UsersSignInDto usersSignInDto){
+    public ResponseEntity<?> signin(@RequestBody UsersSignInDto usersSignInDto, HttpSession session){
         ApiResponse result = null;
         try{
             System.out.println(usersSignInDto);

@@ -1,11 +1,11 @@
 package com.project.bookstore.web.dto;
 
 import com.project.bookstore.domain.Users.Users;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
+@Setter
+@ToString
 @NoArgsConstructor
 public class UsersSignUpDto {
     private String id;
