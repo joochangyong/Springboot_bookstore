@@ -2,9 +2,9 @@ package com.project.bookstore.web;
 
 import com.project.bookstore.config.ApiResponse;
 import com.project.bookstore.service.users.UsersService;
-import com.project.bookstore.web.dto.UsersInfoDto;
-import com.project.bookstore.web.dto.UsersSignInDto;
-import com.project.bookstore.web.dto.UsersSignUpDto;
+import com.project.bookstore.web.dto.Users.UsersInfoDto;
+import com.project.bookstore.web.dto.Users.UsersSignInDto;
+import com.project.bookstore.web.dto.Users.UsersSignUpDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

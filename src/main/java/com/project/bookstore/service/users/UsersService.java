@@ -2,9 +2,9 @@ package com.project.bookstore.service.users;
 
 import com.project.bookstore.domain.Users.UsersMapperRepository;
 import com.project.bookstore.domain.Users.UsersRepository;
-import com.project.bookstore.web.dto.UsersInfoDto;
-import com.project.bookstore.web.dto.UsersSignInDto;
-import com.project.bookstore.web.dto.UsersSignUpDto;
+import com.project.bookstore.web.dto.Users.UsersInfoDto;
+import com.project.bookstore.web.dto.Users.UsersSignInDto;
+import com.project.bookstore.web.dto.Users.UsersSignUpDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

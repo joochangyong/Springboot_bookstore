@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class indexController {
 
     @GetMapping("/")
-    public String index() {
-        return "index"; }
+    public String index() { return "index"; }
 
     @GetMapping("/users/signIn")
     public String signIn() { return "signIn"; }
@@ -22,4 +21,7 @@ public class indexController {
 
     @GetMapping("/users/signUp")
     public String signUp() { return "signUp"; }
+
+    @GetMapping("/books/bookSave")
+    public String bookSave() { return "bookSave"; }
 }
