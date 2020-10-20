@@ -6,6 +6,7 @@ import com.project.bookstore.domain.Users.UsersRepository;
 import com.project.bookstore.web.Users.dto.UsersInfoDto;
 import com.project.bookstore.web.Users.dto.UsersSignInDto;
 import com.project.bookstore.web.Users.dto.UsersSignUpDto;
+import com.project.bookstore.web.Users.dto.UsersUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -37,11 +38,18 @@ public class UsersService {
         return entity;
     }
 
+    //정보불러오기
     @Transactional
     public List<UsersInfoDto> findAllUsers(String id) {
         return usersRepository.findAllUsers(id).stream()
                 .map(UsersInfoDto::new)
                 .collect(Collectors.toList());
     }
-
+    //회원정보수정
+    @Transactional
+    public Object Update(String id, UsersUpdateDto usersUpdateDto) {
+        Users users = usersRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 아이디가 없습니다. id = " + id));
+        users.update(usersUpdateDto.getPw(), usersUpdateDto.getNum(), usersUpdateDto.getMail(), usersUpdateDto.getNic_name());
+        return id;
+    }
 }

@@ -5,16 +5,14 @@ import com.project.bookstore.service.users.UsersService;
 import com.project.bookstore.web.Users.dto.UsersInfoDto;
 import com.project.bookstore.web.Users.dto.UsersSignInDto;
 import com.project.bookstore.web.Users.dto.UsersSignUpDto;
+import com.project.bookstore.web.Users.dto.UsersUpdateDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -79,5 +77,19 @@ public class UsersApiController {
     }
     public UsersInfoDto signIn(@RequestBody UsersSignInDto usersSignInDto) {
         return usersService.usersSign(usersSignInDto);
+    }
+
+    @ApiOperation(value = "회원정보 수정")
+    @PutMapping("api/users/update/{id}")
+    public ResponseEntity update(@PathVariable("id") String id, @RequestBody UsersUpdateDto usersUpdateDto) {
+        ApiResponse result = null;
+        try {
+            result = new ApiResponse(true, "성공", usersService.Update(id, usersUpdateDto));
+            return ResponseEntity.ok().body(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = new ApiResponse(false, e.getMessage(), null);
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 }

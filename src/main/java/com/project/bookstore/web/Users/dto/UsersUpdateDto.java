@@ -1,28 +1,21 @@
 package com.project.bookstore.web.Users.dto;
 
 import com.project.bookstore.domain.Users.Users;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
+@Getter
 @NoArgsConstructor
-public class UsersInfoDto {
-    private String id;
+public class UsersUpdateDto {
     private String pw;
-    private String name;
-    private String sex;
     private int num;
     private String mail;
     private String nic_name;
-    private String total_sum;
 
-    public UsersInfoDto(Users entity) {
-        this.id = entity.getId();
+    @Builder
+    public UsersUpdateDto(Users entity) {
         this.pw = entity.getPw();
-        this.name = entity.getName();
-        this.sex = entity.getSex();
         this.num = entity.getNum();
         this.mail = entity.getMail();
         this.nic_name = entity.getName();
