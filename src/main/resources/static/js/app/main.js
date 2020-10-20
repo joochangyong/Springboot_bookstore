@@ -28,14 +28,18 @@ var main = {
         $.ajax({
             type: 'POST',
             url: '/api/users/signUp',
-            dataType: 'text',
+            dataType: 'json',
             contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data)
+            data: JSON.stringify(data),
         }).done(function() {
             alert('회원가입 되었습니다..');
             window.location.href = '/';
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
+        }).fail(function() {
+            if(data.id == "") {
+                alert('입력하시오');
+            } else {
+                alert('사용중인 아이디입니다.');
+            }
         });
     },
 
@@ -56,7 +60,6 @@ var main = {
             alert('로그인 되었습니다..');
             window.location.href = '/';
         }).fail(function (error) {
-            console.log("들어왔는가");
             alert(JSON.stringify(error));
         });
     },
@@ -64,15 +67,15 @@ var main = {
     bookSave : function () {
         var data = {
             isbm: $('#ISBM').val(),
-            bookName: $('#bookName').val(),
-            bookAut: $('#bookAut').val(),
-            bookTrans: $('#bookTrans').val(),
-            bookHouse: $('#bookHouse').val(),
-            bookDate: $('#bookDate').val(),
-            bookCov: $('#bookCov').val(),
-            bookPri: $('#bookPri').val(),
-            bookGen: $('#bookGen').val(),
-            bookDet: $('#bookDet').val()
+            book_Name: $('#book_Name').val(),
+            book_Aut: $('#book_Aut').val(),
+            book_Trans: $('#book_Trans').val(),
+            book_House: $('#book_House').val(),
+            book_Date: $('#book_Date').val(),
+            book_Cov: $('#book_Cov').val(),
+            book_Pri: $('#book_Pri').val(),
+            book_Gen: $('#book_Gen').val(),
+            book_Det: $('#book_Det').val()
         };
 
         $.ajax({
@@ -81,14 +84,17 @@ var main = {
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
-        }).done(function(data) {
-            console.log(JSON.stringify(data))
+        }).done(function() {
+            console.log("성공"+data.isbm);
             alert('도서가 등록되었습니다..');
             window.location.href = '/';
-        }).fail(function (error, data) {
-            console.log("data" + data)
-            console.log(error)
-            alert(JSON.stringify(error));
+        }).fail(function() {
+            console.log("실패"+data.isbm);
+            if(data.isbm == "") {
+                alert('입력하시오');
+            } else {
+                alert('등록된 도서입니다.');
+            }
         });
     }
 };

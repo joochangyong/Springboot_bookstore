@@ -1,0 +1,52 @@
+{{>layout/header}}
+{{>layout/nav}}
+<h1>도서등록</h1>
+<div class="col-md-12">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label for="ISBM">ISBM</label>
+                <input type="text" class="form-control" id="ISBM" placeholder="ISBM을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="book_Name">도서명</label>
+                <input type="text" class="form-control" id="book_Name" placeholder="책제목을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="book_Aut">저자</label>
+                <input type="text" class="form-control" id="book_Aut" placeholder="저자를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="book_Trans">옮긴이</label>
+                <input type="text" class="form-control" id="book_Trans" placeholder="옮긴이를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="book_House">출판사</label>
+                <input type="text" class="form-control" id="book_House" placeholder="출판사를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="book_Date">출간일</label>
+                <input type="date" class="form-control" id="book_Date" placeholder="출간일 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="book_Cov">표지</label>
+                <input type="email" class="form-control" id="book_Cov" placeholder="표지">
+            </div>
+            <div class="form-group">
+                <label for="book_Pri">가격</label>
+                <input type="text" class="form-control" id="book_Pri" placeholder="가격 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="book_Gen">장르</label>
+                <input type="text" class="form-control" id="book_Gen" placeholder="장르를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="book_Det">상세정보</label>
+                <input type="text" class="form-control" id="book_Det" placeholder="상세정보를 입력하세요">
+            </div>
+        </form>
+        <a href="/" role="button" class="btn btn-secondary">취소</a>
+        <button type="button" class="btn btn-primary" id="btn-booksSave">등록 완료</button>
+    </div>
+</div>
+{{>layout/footer}}

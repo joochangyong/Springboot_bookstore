@@ -32,4 +32,11 @@ public class Users {
         this.mail = mail;
         this.nic_name = nic_name;
     }
+
+    public void update(String pw, int num, String mail, String nic_name) {
+        this.pw = pw;
+        this.num = num;
+        this.mail = mail;
+        this.nic_name = nic_name;
+    }
 }

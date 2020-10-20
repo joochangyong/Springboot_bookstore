@@ -1,4 +1,4 @@
-package com.project.bookstore.web.dto.Users;
+package com.project.bookstore.web.Users.dto;
 
 import com.project.bookstore.domain.Users.Users;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,6 @@ public class UsersInfoDto {
     private int num;
     private String mail;
     private String nic_name;
-    private int total_sum;
 
     public UsersInfoDto(Users entity) {
         this.id = entity.getId();

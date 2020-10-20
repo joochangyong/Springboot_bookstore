@@ -1,10 +1,10 @@
-package com.project.bookstore.web;
+package com.project.bookstore.web.Users;
 
 import com.project.bookstore.config.ApiResponse;
 import com.project.bookstore.service.users.UsersService;
-import com.project.bookstore.web.dto.Users.UsersInfoDto;
-import com.project.bookstore.web.dto.Users.UsersSignInDto;
-import com.project.bookstore.web.dto.Users.UsersSignUpDto;
+import com.project.bookstore.web.Users.dto.UsersInfoDto;
+import com.project.bookstore.web.Users.dto.UsersSignInDto;
+import com.project.bookstore.web.Users.dto.UsersSignUpDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
-@Api(value = "회원", description = "로그인 관리", tags = { "회원" })
+@Api(value = "회원", description = "회원 관리", tags = { "회원" })
 @CrossOrigin("*")
 @RequiredArgsConstructor
 @RestController
@@ -32,8 +32,26 @@ public class UsersApiController {
             @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
             @ApiImplicitParam(name = "content", value = "회원가입", required = true, dataType = "string", paramType = "query", defaultValue = ""), })
     @PostMapping("/api/users/signUp")
-    public String save (@RequestBody UsersSignUpDto requestDto) {
-        return usersService.save(requestDto);
+    public ResponseEntity<?> save (@RequestBody UsersSignUpDto requestDto) {
+        ApiResponse result = null;
+        UsersInfoDto idCheck = new UsersInfoDto(usersService.findById(requestDto.getId()));
+        if(idCheck.getId() == null){
+            try {
+                if(requestDto.getId() != "") {
+                    result = new ApiResponse(true, "성공", usersService.save(requestDto));
+                    return ResponseEntity.ok().body(result);
+                } else {
+                    result = new ApiResponse(false, "실패", null);
+                    return ResponseEntity.badRequest().body(result);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                result = new ApiResponse(false, e.getMessage(), null);
+                return ResponseEntity.badRequest().body(result);
+            }
+        } else {
+            return ResponseEntity.badRequest().body(result);
+        }
     }
 
     @ApiOperation(value = "로그인")
@@ -45,12 +63,12 @@ public class UsersApiController {
         ApiResponse result = null;
         try{
             System.out.println(usersSignInDto);
-            UsersInfoDto userInfoDto = usersService.usersSign(usersSignInDto);
-            if(userInfoDto != null) {
-                result = new ApiResponse(true, "성공", userInfoDto);
+            UsersInfoDto usersInfoDto = usersService.usersSign(usersSignInDto);
+            if(usersInfoDto != null) {
+                result = new ApiResponse(true, "성공", usersInfoDto);
                 return ResponseEntity.ok().body(result);
             } else {
-                result = new ApiResponse(false, "아이디나 비밀번호가 없습니다.", userInfoDto);
+                result = new ApiResponse(false, "아이디나 비밀번호가 없습니다.", usersInfoDto);
                 return ResponseEntity.badRequest().body(result);
             }
         } catch (Exception e) {
