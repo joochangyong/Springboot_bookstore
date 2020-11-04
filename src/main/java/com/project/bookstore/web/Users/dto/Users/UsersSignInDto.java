@@ -1,4 +1,4 @@
-package com.project.bookstore.web.Users.dto;
+package com.project.bookstore.web.Users.dto.Users;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

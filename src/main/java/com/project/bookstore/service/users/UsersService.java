@@ -3,10 +3,13 @@ package com.project.bookstore.service.users;
 import com.project.bookstore.domain.Users.Users;
 import com.project.bookstore.domain.Users.UsersMapperRepository;
 import com.project.bookstore.domain.Users.UsersRepository;
-import com.project.bookstore.web.Users.dto.UsersInfoDto;
-import com.project.bookstore.web.Users.dto.UsersSignInDto;
-import com.project.bookstore.web.Users.dto.UsersSignUpDto;
-import com.project.bookstore.web.Users.dto.UsersUpdateDto;
+//import com.project.bookstore.domain.addr.Addr;
+//import com.project.bookstore.domain.addr.AddrRepository;
+//import com.project.bookstore.web.Users.dto.Addr.AddrSaveDto;
+import com.project.bookstore.web.Users.dto.Users.UsersInfoDto;
+import com.project.bookstore.web.Users.dto.Users.UsersSignInDto;
+import com.project.bookstore.web.Users.dto.Users.UsersSignUpDto;
+import com.project.bookstore.web.Users.dto.Users.UsersUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 public class UsersService {
     private final UsersRepository usersRepository;
     private final UsersMapperRepository usersMapperRepository;
+//    private final AddrRepository addrRepository;
 
     //회원가입
     @Transactional
@@ -52,4 +56,16 @@ public class UsersService {
         users.update(usersUpdateDto.getPw(), usersUpdateDto.getNum(), usersUpdateDto.getMail(), usersUpdateDto.getNic_name());
         return id;
     }
+
+//    //카드등록
+//    @Transactional
+//    public int cardSave(AddrSaveDto addrSaveDto) {
+//        return addrRepository.save(addrSaveDto.toEntity()).getAddr_Code();
+//    }
+//
+//    @Transactional
+//    public Addr findByAddr(int addr_Code) {
+//        Addr entity = addrRepository.findById(addr_Code).orElseGet(Addr::new);
+//        return entity;
+//    }
 }

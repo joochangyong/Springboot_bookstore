@@ -1,0 +1,31 @@
+{{>layout/header}}
+{{>layout/nav}}
+<h1>책 목록</h1>
+<a href="/books/bookSave" role="button" class="btn btn-primary float-right">책등록</a>
+<table class="table table-horizontal table-bordered">
+    <thead class="thead-strong">
+    <tr>
+        <th>책표지</th>
+        <th>책제목</th>
+        <th>저자</th>
+        <th>옮긴이</th>
+        <th>출판사</th>
+        <th>가격</th>
+        <th>장르</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    {{#bookList}}
+    <tr>
+        <td>{{bookCov}}</td>
+        <td><a href="/books/bookInfo/{{ISBM}}">{{bookName}}</a></td>
+        <td>{{bookAut}}</td>
+        <td>{{bookTrans}}</td>
+        <td>{{bookHouse}}</td>
+        <td>{{bookPri}}</td>
+        <td>{{bookGen}}</td>
+    </tr>
+    {{/bookList}}
+    </tbody>
+</table>
+{{>layout/bookFooter}}

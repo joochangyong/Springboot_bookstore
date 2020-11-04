@@ -1,8 +1,8 @@
 package com.project.bookstore.domain.Users;
 
-import com.project.bookstore.web.Users.dto.UsersInfoDto;
-import com.project.bookstore.web.Users.dto.UsersSignInDto;
-import com.project.bookstore.web.Users.dto.UsersSignUpDto;
+import com.project.bookstore.web.Users.dto.Users.UsersInfoDto;
+import com.project.bookstore.web.Users.dto.Users.UsersSignInDto;
+import com.project.bookstore.web.Users.dto.Users.UsersSignUpDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

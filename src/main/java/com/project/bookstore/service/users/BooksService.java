@@ -3,7 +3,8 @@ package com.project.bookstore.service.users;
 import com.project.bookstore.domain.book.Books;
 import com.project.bookstore.domain.book.BooksRepository;
 import com.project.bookstore.web.Books.dto.BookListDto;
-import com.project.bookstore.web.Books.dto.BooksSaveDto;
+import com.project.bookstore.web.Books.dto.BookSaveDto;
+import com.project.bookstore.web.Books.dto.BookUpdateDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,7 @@ public class BooksService {
     
     //도서등록
     @Transactional
-    public String booksave(BooksSaveDto booksSaveDto) {
+    public String booksave(BookSaveDto booksSaveDto) {
         return booksRepository.save(booksSaveDto.toEntity()).getISBM();
     }
     
@@ -36,5 +37,33 @@ public class BooksService {
                 .collect(Collectors.toList());
     }
 
-    
+    //도서 상세정보
+    @Transactional
+    public List<BookListDto> findBybookInfo(String ISBM) {
+        return booksRepository.findBybookInfo(ISBM).stream()
+                .map(BookListDto::new)
+                .collect(Collectors.toList());
+    }
+
+    //도서 수정
+    @Transactional
+    public Books bookUpdate(String ISBM, BookUpdateDto bookUpdateDto) {
+        Books books = booksRepository.findById(ISBM).orElseThrow(() -> new IllegalArgumentException("수정안됨"));
+        books.bookUpdate(bookUpdateDto.getBookTrans(), bookUpdateDto.getBookCov(), bookUpdateDto.getBookPri(), bookUpdateDto.getBookDet());
+        return books;
+    }
+
+    //도서 검색
+    @Transactional
+    public List<BookListDto> bookName(String bookName, BookListDto bookListDto) {
+        return booksRepository.findByBookNameContaining(bookName).stream()
+                .map(BookListDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete (String ISBM) {
+        Books books = booksRepository.findById(ISBM).orElseThrow(() -> new IllegalArgumentException("삭제안됨"));
+        booksRepository.delete(books);
+    }
 }

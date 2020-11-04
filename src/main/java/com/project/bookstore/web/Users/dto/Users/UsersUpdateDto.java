@@ -1,4 +1,4 @@
-package com.project.bookstore.web.Users.dto;
+package com.project.bookstore.web.Users.dto.Users;
 
 import com.project.bookstore.domain.Users.Users;
 import lombok.Builder;

@@ -12,25 +12,26 @@ import java.util.Date;
 @NoArgsConstructor
 public class BookListDto {
     private String ISBM;
-    private String book_Name;
-    private String book_Aut;
-    private String book_Trans;
-    private String book_House;
-    private Date book_Date;
-    private String book_Cov;
-    private int book_Pri;
-    private String book_Gen;
-    private String book_Det;
+    private String bookName;
+    private String bookAut;
+    private String bookTrans;
+    private String bookHouse;
+    private Date bookDate;
+    private String bookCov;
+    private int bookPri;
+    private String bookGen;
+    private String bookDet;
 
     public BookListDto(Books entity) {
         this.ISBM = entity.getISBM();
-        this.book_Name = entity.getBook_Name();
-        this.book_Aut = entity.getBook_Aut();
-        this.book_House = entity.getBook_House();
-        this.book_Date = entity.getBook_Date();
-        this.book_Cov = entity.getBook_Cov();
-        this.book_Pri = entity.getBook_Pri();
-        this.book_Gen = entity.getBook_Gen();
-        this.book_Det = entity.getBook_Det();
+        this.bookName = entity.getBookName();
+        this.bookAut = entity.getBookAut();
+        this.bookTrans = entity.getBookTrans();
+        this.bookHouse = entity.getBookHouse();
+        this.bookDate = entity.getBookDate();
+        this.bookCov = entity.getBookCov();
+        this.bookPri = entity.getBookPri();
+        this.bookGen = entity.getBookGen();
+        this.bookDet = entity.getBookDet();
     }
 }

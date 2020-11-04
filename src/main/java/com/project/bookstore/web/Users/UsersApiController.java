@@ -2,10 +2,10 @@ package com.project.bookstore.web.Users;
 
 import com.project.bookstore.config.ApiResponse;
 import com.project.bookstore.service.users.UsersService;
-import com.project.bookstore.web.Users.dto.UsersInfoDto;
-import com.project.bookstore.web.Users.dto.UsersSignInDto;
-import com.project.bookstore.web.Users.dto.UsersSignUpDto;
-import com.project.bookstore.web.Users.dto.UsersUpdateDto;
+import com.project.bookstore.web.Users.dto.Users.UsersInfoDto;
+import com.project.bookstore.web.Users.dto.Users.UsersSignInDto;
+import com.project.bookstore.web.Users.dto.Users.UsersSignUpDto;
+import com.project.bookstore.web.Users.dto.Users.UsersUpdateDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -92,4 +92,23 @@ public class UsersApiController {
             return ResponseEntity.badRequest().body(result);
         }
     }
+
+//    @ApiOperation(value = "주소등록")
+//    @PostMapping("/api/users/addrSave")
+//    public ResponseEntity<?> save (@RequestBody AddrSaveDto addrSaveDto) {
+//        ApiResponse result = null;
+//            try {
+//                if(addrSaveDto.getAddr_Zip() != null) {
+//                    result = new ApiResponse(true, "성공", usersService.save(addrSaveDto));
+//                    return ResponseEntity.ok().body(result);
+//                } else {
+//                    result = new ApiResponse(false, "실패", null);
+//                    return ResponseEntity.badRequest().body(result);
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                result = new ApiResponse(false, e.getMessage(), null);
+//                return ResponseEntity.badRequest().body(result);
+//            }
+//    }
 }

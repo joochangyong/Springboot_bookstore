@@ -8,10 +8,6 @@ var main = {
         $('#btn-login').on('click', function () {
             _this.login();
         });
-
-        $('#btn-booksSave').on('click', function () {
-            _this.bookSave();
-        });
     },
 
     save : function () {
@@ -61,40 +57,6 @@ var main = {
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));
-        });
-    },
-
-    bookSave : function () {
-        var data = {
-            isbm: $('#ISBM').val(),
-            book_Name: $('#book_Name').val(),
-            book_Aut: $('#book_Aut').val(),
-            book_Trans: $('#book_Trans').val(),
-            book_House: $('#book_House').val(),
-            book_Date: $('#book_Date').val(),
-            book_Cov: $('#book_Cov').val(),
-            book_Pri: $('#book_Pri').val(),
-            book_Gen: $('#book_Gen').val(),
-            book_Det: $('#book_Det').val()
-        };
-
-        $.ajax({
-            type: 'POST',
-            url: '/api/books/save',
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data)
-        }).done(function() {
-            console.log("성공"+data.isbm);
-            alert('도서가 등록되었습니다..');
-            window.location.href = '/';
-        }).fail(function() {
-            console.log("실패"+data.isbm);
-            if(data.isbm == "") {
-                alert('입력하시오');
-            } else {
-                alert('등록된 도서입니다.');
-            }
         });
     }
 };
