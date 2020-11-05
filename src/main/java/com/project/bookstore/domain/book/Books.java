@@ -15,7 +15,7 @@ import java.util.Date;
 public class Books {
 
     @Id
-    private String ISBM;
+    private String isbn;
 
     @Column(length = 500, nullable = false)
     private String bookName; //도서명
@@ -29,8 +29,8 @@ public class Books {
     private String bookDet; //상세정보
 
     @Builder
-    public Books(String ISBM, String bookName, String bookAut, String bookTrans, String bookHouse, Date bookDate, String bookCov, int bookPri, String bookGen, String bookDet) {
-        this.ISBM = ISBM;
+    public Books(String isbn, String bookName, String bookAut, String bookTrans, String bookHouse, Date bookDate, String bookCov, int bookPri, String bookGen, String bookDet) {
+        this.isbn = isbn;
         this.bookName = bookName;
         this.bookAut = bookAut;
         this.bookTrans = bookTrans;

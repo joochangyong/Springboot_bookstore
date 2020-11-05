@@ -28,10 +28,10 @@ public class BookApiController {
     @PostMapping("/api/books/save")
     public ResponseEntity<?> bookSave (@RequestBody BookSaveDto booksSaveDto) {
         ApiResponse result = null;
-        BookListDto isbmCheck = new BookListDto(booksService.findById(booksSaveDto.getISBM()));
-        if(isbmCheck.getISBM() == null) {
+        BookListDto isbnCheck = new BookListDto(booksService.findById(booksSaveDto.getIsbn()));
+        if(isbnCheck.getIsbn() == null) {
             try{
-                if(booksSaveDto.getISBM() != "") {
+                if(booksSaveDto.getIsbn() != "") {
                     result = new ApiResponse(true, "성공", booksService.booksave(booksSaveDto));
                     return ResponseEntity.ok().body(result);
                 } else {
@@ -49,12 +49,12 @@ public class BookApiController {
     }
 
     @ApiOperation(value = "도서수정")
-    @PostMapping("/api/books/update/{ISBM}")
-    public ResponseEntity<?> bookUpdate (@PathVariable("ISBM") String ISBM, @RequestBody BookUpdateDto bookUpdateDto) {
+    @PostMapping("/api/books/update/{isbn}")
+    public ResponseEntity<?> bookUpdate (@PathVariable("isbn") String isbn, @RequestBody BookUpdateDto bookUpdateDto) {
         ApiResponse result = null;
         try{
-            System.out.println(ISBM);
-            result = new ApiResponse(true, "성공", booksService.bookUpdate(ISBM, bookUpdateDto));
+            System.out.println(isbn);
+            result = new ApiResponse(true, "성공", booksService.bookUpdate(isbn, bookUpdateDto));
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,9 +87,9 @@ public class BookApiController {
         }
     }
 
-    @DeleteMapping("/api/books/delete/{ISBM}")
-    public String delete(@PathVariable("ISBM") String ISBM) {
-        booksService.delete(ISBM);
-        return ISBM;
+    @DeleteMapping("/api/books/delete/{isbn}")
+    public String delete(@PathVariable("isbn") String isbn) {
+        booksService.delete(isbn);
+        return isbn;
     }
 }

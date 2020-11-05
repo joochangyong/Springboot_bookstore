@@ -20,13 +20,13 @@ public class BooksService {
     //도서등록
     @Transactional
     public String booksave(BookSaveDto booksSaveDto) {
-        return booksRepository.save(booksSaveDto.toEntity()).getISBM();
+        return booksRepository.save(booksSaveDto.toEntity()).getIsbn();
     }
     
-    //ISBM중복확인
+    //isbn중복확인
     @Transactional
-    public Books findById(String ISBM) {
-        Books entity = booksRepository.findById(ISBM).orElseGet(Books::new);
+    public Books findById(String isbn) {
+        Books entity = booksRepository.findById(isbn).orElseGet(Books::new);
         return entity;
     }
     //도서리스트
@@ -39,16 +39,16 @@ public class BooksService {
 
     //도서 상세정보
     @Transactional
-    public List<BookListDto> findBybookInfo(String ISBM) {
-        return booksRepository.findBybookInfo(ISBM).stream()
+    public List<BookListDto> findBybookInfo(String isbn) {
+        return booksRepository.findBybookInfo(isbn).stream()
                 .map(BookListDto::new)
                 .collect(Collectors.toList());
     }
 
     //도서 수정
     @Transactional
-    public Books bookUpdate(String ISBM, BookUpdateDto bookUpdateDto) {
-        Books books = booksRepository.findById(ISBM).orElseThrow(() -> new IllegalArgumentException("수정안됨"));
+    public Books bookUpdate(String isbn, BookUpdateDto bookUpdateDto) {
+        Books books = booksRepository.findById(isbn).orElseThrow(() -> new IllegalArgumentException("수정안됨"));
         books.bookUpdate(bookUpdateDto.getBookTrans(), bookUpdateDto.getBookCov(), bookUpdateDto.getBookPri(), bookUpdateDto.getBookDet());
         return books;
     }
@@ -62,8 +62,8 @@ public class BooksService {
     }
 
     @Transactional
-    public void delete (String ISBM) {
-        Books books = booksRepository.findById(ISBM).orElseThrow(() -> new IllegalArgumentException("삭제안됨"));
+    public void delete (String isbn) {
+        Books books = booksRepository.findById(isbn).orElseThrow(() -> new IllegalArgumentException("삭제안됨"));
         booksRepository.delete(books);
     }
 }

@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookListDto {
-    private String ISBM;
+    private String isbn;
     private String bookName;
     private String bookAut;
     private String bookTrans;
@@ -23,7 +23,7 @@ public class BookListDto {
     private String bookDet;
 
     public BookListDto(Books entity) {
-        this.ISBM = entity.getISBM();
+        this.isbn = entity.getIsbn();
         this.bookName = entity.getBookName();
         this.bookAut = entity.getBookAut();
         this.bookTrans = entity.getBookTrans();

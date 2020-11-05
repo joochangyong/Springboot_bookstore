@@ -15,7 +15,7 @@ public class UsersInfoDto {
     private String sex;
     private int num;
     private String mail;
-    private String nic_name;
+    private String nicName;
     private String total_sum;
 
     public UsersInfoDto(Users entity) {
@@ -25,6 +25,6 @@ public class UsersInfoDto {
         this.sex = entity.getSex();
         this.num = entity.getNum();
         this.mail = entity.getMail();
-        this.nic_name = entity.getName();
+        this.nicName = entity.getName();
     }
 }

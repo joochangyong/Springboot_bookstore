@@ -29,16 +29,16 @@ public class BookController {
     }
 
     //책 상세정보
-    @GetMapping("/books/bookInfo/{ISBM}")
-    public String bookInfo(@PathVariable("ISBM") String ISBM, Model model) {
-        model.addAttribute("bookInfo", booksService.findBybookInfo(ISBM));
+    @GetMapping("/books/bookInfo/{isbn}")
+    public String bookInfo(@PathVariable("isbn") String isbn, Model model) {
+        model.addAttribute("bookInfo", booksService.findBybookInfo(isbn));
         return "Book/bookInfo";
     }
 
     //책 정보 수정
-    @GetMapping("/books/bookUpdate/{ISBM}")
-    public String bookUpdate(@PathVariable("ISBM") String ISBM, Model model) {
-        model.addAttribute("bookInfo", booksService.findBybookInfo(ISBM));
+    @GetMapping("/books/bookUpdate/{isbn}")
+    public String bookUpdate(@PathVariable("isbn") String isbn, Model model) {
+        model.addAttribute("bookInfo", booksService.findBybookInfo(isbn));
         return "Book/bookUpdate";
     }
 

@@ -10,7 +10,7 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 public class BookSaveDto {
-    private String ISBM;
+    private String isbn;
     private String bookName;
     private String bookAut;
     private String bookTrans;
@@ -22,8 +22,8 @@ public class BookSaveDto {
     private String bookDet;
 
     @Builder
-    public BookSaveDto(String ISBM, String bookName, String bookAut, String bookTrans, String bookHouse, Date bookDate, String bookCov, int bookPri, String bookGen, String bookDet) {
-        this.ISBM = ISBM;
+    public BookSaveDto(String isbn, String bookName, String bookAut, String bookTrans, String bookHouse, Date bookDate, String bookCov, int bookPri, String bookGen, String bookDet) {
+        this.isbn = isbn;
         this.bookName = bookName;
         this.bookAut = bookAut;
         this.bookTrans = bookTrans;
@@ -37,7 +37,7 @@ public class BookSaveDto {
 
     public Books toEntity() {
         return Books.builder()
-                .ISBM(ISBM)
+                .isbn(isbn)
                 .bookName(bookName)
                 .bookAut(bookAut)
                 .bookTrans(bookTrans)
