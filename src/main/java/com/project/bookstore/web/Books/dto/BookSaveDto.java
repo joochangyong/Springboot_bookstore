@@ -1,6 +1,6 @@
 package com.project.bookstore.web.Books.dto;
 
-import com.project.bookstore.domain.book.Books;
+import com.project.bookstore.domain.Books.Books;
 import lombok.*;
 
 import java.util.Date;

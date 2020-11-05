@@ -1,5 +1,16 @@
 {{>layout/header}}
 {{>layout/nav}}
-<h1>마이페이지</h1>
-    <a href="/users/usersUpdate" role="button" class="btn btn-primary">회원정보수정</a>
+{{#userInfo}}
+    <h1>{{name}}님 마이페이지</h1>
+{{/userInfo}}
+<div class="col-md-12">
+    <div class="col-md-4">
+        <form method="post">
+            {{#userInfo}}
+                <a href="/users/usersUpdate/{{id}}" role="button" class="btn btn-primary">회원정보수정</a>
+            {{/userInfo}}
+        </form>
+    </div>
+</div>
+
 {{>layout/footer}}

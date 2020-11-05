@@ -1,12 +1,13 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
     <h3 class="my-0 mr-md-auto font-weight-normal"><a href="/" role="button">BookStore</a></h3>
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Features</a>
-        <a class="p-2 text-dark" href="#">Enterprise</a>
-        <a class="p-2 text-dark" href="#">Support</a>
-        <a class="p-2 text-dark" href="#">Pricing</a>
-        <a href="/users/mypage" role="button" class="btn btn-primary">마이페이지</a>
-        <a href="/users/signIn" role="button" class="btn btn-primary">로그인</a>
-        <a href="/users/signUp" role="button" class="btn btn-primary">회원가입</a>
+        {{#userInfo}}
+            {{name}}님
+            <a href="/users/mypage/{{id}}" role="button" class="btn btn-primary"> 마이페이지</a>
+            <button type="button" class="btn btn-primary" id="btn-logout">로그아웃</button>
+        {{/userInfo}}
+        {{^userInfo}}
+            <a href="/users/signIn" role="button" class="btn btn-primary">로그인</a>
+        {{/userInfo}}
     </nav>
 </div>

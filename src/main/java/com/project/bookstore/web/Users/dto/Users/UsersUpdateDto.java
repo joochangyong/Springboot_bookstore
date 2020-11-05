@@ -11,13 +11,11 @@ public class UsersUpdateDto {
     private String pw;
     private int num;
     private String mail;
-    private String nicName;
 
     @Builder
     public UsersUpdateDto(Users entity) {
         this.pw = entity.getPw();
         this.num = entity.getNum();
         this.mail = entity.getMail();
-        this.nicName = entity.getName();
     }
 }

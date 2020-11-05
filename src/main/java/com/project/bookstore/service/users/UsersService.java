@@ -53,7 +53,7 @@ public class UsersService {
     @Transactional
     public Object Update(String id, UsersUpdateDto usersUpdateDto) {
         Users users = usersRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 아이디가 없습니다. id = " + id));
-        users.update(usersUpdateDto.getPw(), usersUpdateDto.getNum(), usersUpdateDto.getMail(), usersUpdateDto.getNicName());
+        users.update(usersUpdateDto.getPw(), usersUpdateDto.getNum(), usersUpdateDto.getMail());
         return id;
     }
 

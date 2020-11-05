@@ -14,17 +14,15 @@ public class UsersSignUpDto {
     private String sex;
     private int num;
     private String mail;
-    private String nicName;
 
     @Builder
-    public UsersSignUpDto(String id, String pw, String name, String sex, int num, String mail, String nicName) {
+    public UsersSignUpDto(String id, String pw, String name, String sex, int num, String mail) {
         this.id = id;
         this.pw = pw;
         this.name = name;
         this.sex = sex;
         this.num = num;
         this.mail = mail;
-        this.nicName = nicName;
     }
 
     public Users toEntity() {
@@ -35,7 +33,6 @@ public class UsersSignUpDto {
                 .sex(sex)
                 .num(num)
                 .mail(mail)
-                .nicName(nicName)
                 .build();
     }
 }

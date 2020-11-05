@@ -1,7 +1,7 @@
 package com.project.bookstore.service.users;
 
-import com.project.bookstore.domain.book.Books;
-import com.project.bookstore.domain.book.BooksRepository;
+import com.project.bookstore.domain.Books.Books;
+import com.project.bookstore.domain.Books.BooksRepository;
 import com.project.bookstore.web.Books.dto.BookListDto;
 import com.project.bookstore.web.Books.dto.BookSaveDto;
 import com.project.bookstore.web.Books.dto.BookUpdateDto;
