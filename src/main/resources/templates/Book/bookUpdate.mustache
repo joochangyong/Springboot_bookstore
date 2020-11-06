@@ -7,14 +7,6 @@
             {{#bookInfo}}
                 <input type="text" class="form-control" id="isbn" value="{{isbn}}" hidden>
             <div class="form-group">
-                <label for="bookTrans">옮긴이</label>
-                <input type="text" class="form-control" id="bookTrans" value="{{bookTrans}}">
-            </div>
-            <div class="form-group">
-                <label for="bookCov">표지</label>
-                <input type="text" class="form-control" id="bookCov" value="{{bookCov}}">
-            </div>
-            <div class="form-group">
                 <label for="bookPri">가격</label>
                 <input type="text" class="form-control" id="bookPri" value="{{bookPri}}">
             </div>
@@ -25,8 +17,8 @@
             {{/bookInfo}}
         </form>
         <button type="button" class="btn btn-primary" onclick="goBack();">취소</button>
-        <button type="button" class="btn btn-primary" id="btn-booksDelete">삭제</button>
         <button type="button" class="btn btn-primary" id="btn-booksUpdate">수정 완료</button>
+        <button type="button" class="btn btn-primary" id="btn-booksDelete">삭제</button>
     </div>
 </div>
 <script type="text/javascript">

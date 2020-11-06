@@ -1,13 +1,17 @@
 {{>layout/header}}
 {{>layout/nav}}
 <h1>책 상세 정보</h1>
+<a href="/books/bookList" role="button" class="btn btn-primary float-right">목록</a>
+<script type="text/javascript">
+    function goBack(){
+        window.history.back();
+    }
+</script>
 <table class="table table-horizontal table-bordered">
     <thead class="thead-strong">
     <tr>
-        <th>책표지</th>
         <th>책제목</th>
         <th>저자</th>
-        <th>옮긴이</th>
         <th>출간일</th>
         <th>출판사</th>
         <th>가격</th>
@@ -18,10 +22,8 @@
     <tbody id="tbody">
     {{#bookInfo}}
     <tr>
-        <td>{{bookCov}}</td>
         <td>{{bookName}}</td>
         <td>{{bookAut}}</td>
-        <td>{{bookTrans}}</td>
         <td>{{bookDate}}</td>
         <td>{{bookHouse}}</td>
         <td>{{bookPri}}</td>

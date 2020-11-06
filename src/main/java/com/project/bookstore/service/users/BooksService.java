@@ -26,7 +26,10 @@ public class BooksService {
     //isbn중복확인
     @Transactional
     public Books findById(String isbn) {
+        System.out.println("*****************");
+        System.out.println(isbn);
         Books entity = booksRepository.findById(isbn).orElseGet(Books::new);
+
         return entity;
     }
     //도서리스트
@@ -49,7 +52,7 @@ public class BooksService {
     @Transactional
     public Books bookUpdate(String isbn, BookUpdateDto bookUpdateDto) {
         Books books = booksRepository.findById(isbn).orElseThrow(() -> new IllegalArgumentException("수정안됨"));
-        books.bookUpdate(bookUpdateDto.getBookTrans(), bookUpdateDto.getBookCov(), bookUpdateDto.getBookPri(), bookUpdateDto.getBookDet());
+        books.bookUpdate(bookUpdateDto.getBookPri(), bookUpdateDto.getBookDet());
         return books;
     }
 

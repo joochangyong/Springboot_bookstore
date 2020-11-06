@@ -17,7 +17,7 @@ var main = {
 
     bookSave : function () {
         var data = {
-            isbm: $('#ISBM').val(),
+            isbn: $('#isbn').val(),
             bookName: $('#bookName').val(),
             bookAut: $('#bookAut').val(),
             bookTrans: $('#bookTrans').val(),
@@ -55,28 +55,28 @@ var main = {
             bookDet: $('#bookDet').val()
         };
 
-        var ISBM = $('#ISBM').val();
+        var isbn = $('#isbn').val();
 
         $.ajax({
             type: 'POST',
-            url: '/api/books/update/' + ISBM,
+            url: '/api/books/update/' + isbn,
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
             alert('도서가 수정되었습니다..');
-            window.location.href = '/books/bookInfo/' + ISBM;
+            window.location.href = '/books/bookInfo/' + isbn;
         }).fail(function (error) {
            alert(JSON.stringify(error));
        });
     },
 
     delete : function () {
-        var ISBM = $('#ISBM').val();
+        var isbn = $('#isbn').val();
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/books/delete/'+ISBM,
+            url: '/api/books/delete/'+ isbn,
             dataType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {
