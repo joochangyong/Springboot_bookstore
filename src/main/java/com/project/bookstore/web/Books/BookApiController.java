@@ -1,19 +1,18 @@
 package com.project.bookstore.web.Books;
 
 import com.project.bookstore.config.ApiResponse;
-import com.project.bookstore.service.users.BooksService;
+import com.project.bookstore.service.books.BooksService;
 import com.project.bookstore.web.Books.dto.BookListDto;
 import com.project.bookstore.web.Books.dto.BookSaveDto;
 import com.project.bookstore.web.Books.dto.BookUpdateDto;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @Api(value = "도서", description = "도서 관리", tags = { "도서" })
+@RequestMapping("/api/books")
 @CrossOrigin("*")
 @RequiredArgsConstructor
 @RestController
@@ -22,10 +21,7 @@ public class BookApiController {
     private final BooksService booksService;
 
     @ApiOperation(value = "도서등록")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = "title", value = "제목", required = true, dataType = "string", paramType = "query", defaultValue = ""),
-            @ApiImplicitParam(name = "content", value = "도서", required = true, dataType = "string", paramType = "query", defaultValue = ""), })
-    @PostMapping("/api/books/save")
+    @PostMapping("/save")
     public ResponseEntity<?> bookSave (@RequestBody BookSaveDto booksSaveDto) {
         ApiResponse result = null;
         BookListDto isbnCheck = new BookListDto(booksService.findById(booksSaveDto.getIsbn()));
@@ -49,7 +45,7 @@ public class BookApiController {
     }
 
     @ApiOperation(value = "도서수정")
-    @PostMapping("/api/books/update/{isbn}")
+    @PostMapping("/update/{isbn}")
     public ResponseEntity<?> bookUpdate (@PathVariable("isbn") String isbn, @RequestBody BookUpdateDto bookUpdateDto) {
         ApiResponse result = null;
         try{
@@ -87,7 +83,7 @@ public class BookApiController {
         }
     }
 
-    @DeleteMapping("/api/books/delete/{isbn}")
+    @DeleteMapping("/delete/{isbn}")
     public String delete(@PathVariable("isbn") String isbn) {
         booksService.delete(isbn);
         return isbn;

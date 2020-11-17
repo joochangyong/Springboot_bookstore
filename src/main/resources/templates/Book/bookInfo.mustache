@@ -1,7 +1,7 @@
 {{>layout/header}}
 {{>layout/nav}}
 <h1>책 상세 정보</h1>
-<a href="/books/bookList" role="button" class="btn btn-primary float-right">목록</a>
+<a href="/books/bookList" role="button" class="btn btn-outline-dark float-right">목록</a>
 <script type="text/javascript">
     function goBack(){
         window.history.back();
@@ -33,5 +33,5 @@
     {{/bookInfo}}
     </tbody>
 </table>
-<a href="/books/bookUpdate/{{isbn}}" role="button" class="btn btn-primary float-right">정보 수정</a>
+<a href="/books/bookUpdate/{{isbn}}" role="button" class="btn btn-outline-dark float-right">정보 수정</a>
 {{>layout/bookFooter}}

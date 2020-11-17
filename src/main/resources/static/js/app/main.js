@@ -16,7 +16,7 @@ var main = {
             _this.logout();
         });
     },
-
+    // ///////////////////////////////////////회원가입///////////////////////////////////////
     save : function () {
         var data = {
             id: $('#id').val(),
@@ -45,6 +45,7 @@ var main = {
         });
     },
 
+    // ///////////////////////////////////////로그인///////////////////////////////////////
     login : function () {
         var data = {
             id: $('#id').val(),
@@ -58,13 +59,14 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-            alert('로그인 되었습니다..');
+//            alert('로그인 되었습니다..');
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
     },
 
+    // ///////////////////////////////////////정보 수정///////////////////////////////////////
     update : function () {
         var data = {
 
@@ -89,6 +91,7 @@ var main = {
         });
     },
 
+    // ///////////////////////////////////////로그아웃///////////////////////////////////////
     logout : function(){
         $.ajax({
             type: 'POST',

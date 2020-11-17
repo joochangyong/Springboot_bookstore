@@ -3,9 +3,6 @@ package com.project.bookstore.service.users;
 import com.project.bookstore.domain.Users.Users;
 import com.project.bookstore.domain.Users.UsersMapperRepository;
 import com.project.bookstore.domain.Users.UsersRepository;
-//import com.project.bookstore.domain.addr.Addr;
-//import com.project.bookstore.domain.addr.AddrRepository;
-//import com.project.bookstore.web.Users.dto.Addr.AddrSaveDto;
 import com.project.bookstore.web.Users.dto.Users.UsersInfoDto;
 import com.project.bookstore.web.Users.dto.Users.UsersSignInDto;
 import com.project.bookstore.web.Users.dto.Users.UsersSignUpDto;
@@ -22,7 +19,6 @@ import java.util.stream.Collectors;
 public class UsersService {
     private final UsersRepository usersRepository;
     private final UsersMapperRepository usersMapperRepository;
-//    private final AddrRepository addrRepository;
 
     //회원가입
     @Transactional
@@ -49,6 +45,7 @@ public class UsersService {
                 .map(UsersInfoDto::new)
                 .collect(Collectors.toList());
     }
+
     //회원정보수정
     @Transactional
     public Object Update(String id, UsersUpdateDto usersUpdateDto) {
@@ -56,16 +53,4 @@ public class UsersService {
         users.update(usersUpdateDto.getPw(), usersUpdateDto.getNum(), usersUpdateDto.getMail());
         return id;
     }
-
-//    //카드등록
-//    @Transactional
-//    public int cardSave(AddrSaveDto addrSaveDto) {
-//        return addrRepository.save(addrSaveDto.toEntity()).getAddr_Code();
-//    }
-//
-//    @Transactional
-//    public Addr findByAddr(int addr_Code) {
-//        Addr entity = addrRepository.findById(addr_Code).orElseGet(Addr::new);
-//        return entity;
-//    }
 }

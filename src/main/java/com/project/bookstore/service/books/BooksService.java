@@ -1,4 +1,4 @@
-package com.project.bookstore.service.users;
+package com.project.bookstore.service.books;
 
 import com.project.bookstore.domain.Books.Books;
 import com.project.bookstore.domain.Books.BooksRepository;
@@ -63,7 +63,8 @@ public class BooksService {
                 .map(BookListDto::new)
                 .collect(Collectors.toList());
     }
-
+    
+    //도서 삭제
     @Transactional
     public void delete (String isbn) {
         Books books = booksRepository.findById(isbn).orElseThrow(() -> new IllegalArgumentException("삭제안됨"));

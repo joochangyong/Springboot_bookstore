@@ -1,7 +1,7 @@
 {{>layout/header}}
 {{>layout/nav}}
 <h1>책 목록</h1>
-<a href="/books/bookSave" role="button" class="btn btn-primary float-right">책등록</a>
+<a href="/books/bookSave" role="button" class="btn btn-outline-dark float-right">책등록</a>
 <table class="table table-horizontal table-bordered">
     <thead class="thead-strong">
     <tr>
@@ -15,7 +15,7 @@
     <tbody id="tbody">
     {{#bookList}}
     <tr>
-        <td><a href="/books/bookInfo/{{isbn}}">{{bookName}}</a></td>
+        <td><a href="/books/bookInfo/{{isbn}}" class="text-dark">{{bookName}}</a></td>
         <td>{{bookAut}}</td>
         <td>{{bookHouse}}</td>
         <td>{{bookPri}}</td>
