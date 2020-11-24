@@ -18,9 +18,10 @@ public class BookSaveDto {
     private Long bookPri;
     private String bookGen;
     private String bookDet;
+    private int bookSto;
 
     @Builder
-    public BookSaveDto(String isbn, String bookName, String bookAut,  String bookHouse, Date bookDate, Long bookPri, String bookGen, String bookDet) {
+    public BookSaveDto(String isbn, String bookName, String bookAut,  String bookHouse, Date bookDate, Long bookPri, String bookGen, String bookDet, int bookSto) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.bookAut = bookAut;
@@ -29,6 +30,7 @@ public class BookSaveDto {
         this.bookPri = bookPri;
         this.bookGen = bookGen;
         this.bookDet = bookDet;
+        this.bookSto = bookSto;
     }
 
     public Books toEntity() {
@@ -41,6 +43,7 @@ public class BookSaveDto {
                 .bookPri(bookPri)
                 .bookGen(bookGen)
                 .bookDet(bookDet)
+                .bookSto(bookSto)
                 .build();
     }
 }

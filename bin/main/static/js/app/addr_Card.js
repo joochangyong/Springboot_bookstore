@@ -1,12 +1,12 @@
-var main = {
+var addrCard = {
     init : function () {
         var _this = this;
         $('#btn-addrSave').on('click', function () {
             _this.addrSave();
         });
 
-        $('#btn-addrDelete').on('click', function () {
-            _this.delete();
+        $('#btn-cardSave').on('click', function () {
+            _this.cardSave();
         });
     },
     // ///////////////////////////////////////배송지 등록///////////////////////////////////////
@@ -29,27 +29,35 @@ var main = {
             data: JSON.stringify(data),
         }).done(function() {
             alert('등록 되었습니다..');
-            window.location.href = '/users/mypage/' + id;
+            window.location.href = '/users/mypage/';
         }).fail(function(error) {
             alert(JSON.stringify(error));
         });
     },
-    // ///////////////////////////////////////배송지 삭제///////////////////////////////////////
-    delete : function () {
-        var addrCode = $('#addrCode').val();
+
+    // ///////////////////////////////////////카드 등록///////////////////////////////////////
+    cardSave : function () {
+        var data = {
+            cardNum: $('#cardNum').val(),
+            cardCVC: $('#cardCVC').val(),
+            cardVal: $('#cardVal').val(),
+            cardPeriod: $('#cardPeriod').val()
+        };
+
         var id = $('#id').val();
 
         $.ajax({
-            type: 'DELETE',
-            url: '/api/addr/delete/'+ addrCode,
+            type: 'POST',
+            url: '/api/cardSave/' + id,
             dataType: 'json',
-            contentType:'application/json; charset=utf-8'
+            contentType:'application/json; charset=utf-8',
+            data: JSON.stringify(data),
         }).done(function() {
-            alert('배송지가 삭제되었습니다.');
-            window.location.href = '/users/mypage/' + id';
-        }).fail(function (error) {
+            alert('등록 되었습니다..');
+            window.location.href = '/users/mypage/';
+        }).fail(function(error) {
             alert(JSON.stringify(error));
         });
-    }
+    },
 };
-main.init();
+addrCard.init();

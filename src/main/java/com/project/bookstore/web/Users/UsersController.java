@@ -1,6 +1,7 @@
 package com.project.bookstore.web.Users;
 
 import com.project.bookstore.service.users.AddrService;
+import com.project.bookstore.service.users.CardService;
 import com.project.bookstore.service.users.UsersService;
 import com.project.bookstore.session.UsersInfo;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class UsersController {
     private final UsersService usersService;
     private final AddrService addrService;
+    private final CardService cardService;
     private final UsersInfo usersInfo;
     //회원가입
     @GetMapping("/users/signUp")
@@ -24,10 +26,11 @@ public class UsersController {
     public String signIn() { return "Users/signIn"; }
 
     //마이페이지
-    @GetMapping("/users/mypage/{id}")
-    public String mypage(@PathVariable("id") String id, Model model) {
+    @GetMapping("/users/mypage")
+    public String mypage(Model model) {
         model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
         model.addAttribute("addrInfo", addrService.findByUsers_Id(usersInfo.getUserId()));
+        model.addAttribute("cardInfo", cardService.findByUsers_Id(usersInfo.getUserId()));
         return "Users/mypage";
     }
 }

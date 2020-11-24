@@ -2,7 +2,6 @@ package com.project.bookstore.web.Users;
 
 import com.project.bookstore.config.ApiResponse;
 import com.project.bookstore.service.users.AddrService;
-import com.project.bookstore.service.users.UsersService;
 import com.project.bookstore.session.UsersInfo;
 import com.project.bookstore.web.Users.dto.Addr.AddrSaveDto;
 import io.swagger.annotations.Api;
@@ -10,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Api(value = "주소", description = "주소 관리", tags = { "주소" })
 @CrossOrigin("*")
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 public class AddrApiController {
     private final AddrService addrService;
-    private final UsersService usersService;
     private final UsersInfo usersInfo;
 
     @ApiOperation(value = "주소등록")
@@ -40,12 +39,11 @@ public class AddrApiController {
             return ResponseEntity.badRequest().body(result);
         }
     }
-
-    @DeleteMapping("/api/addr/delete/{addrCode}")
-    public Long delete(@PathVariable("addrCode") Long addrCode) {
-        System.out.println("------------------");
-        System.out.println(addrCode);
+    
+    //배송지 삭제
+    @PostMapping("/addrDelete/{addrCode}")
+    public RedirectView delete(@PathVariable("addrCode") Long addrCode) {
         addrService.delete(addrCode);
-        return addrCode;
+        return new RedirectView("/users/mypage");
     }
 }

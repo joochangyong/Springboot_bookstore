@@ -23,18 +23,16 @@ public class Cards {
     @JoinColumn(name = "users_id")
     private Users users;
 
-    private Date cardPeriod; //유효기간
+    private String cardPeriod; //유효기간
     private Long cardCVC; //CVC번호
-    private Long cardPw; //카드비밀번호
-    private String carVal; //카드종류
+    private String cardVal; //카드종류
 
     @Builder
-    private Cards (Users users, String cardNum, Date cardPeriod, Long cardCVC, Long cardPw, String carVal) {
+    private Cards (Users users, String cardNum, String cardPeriod, Long cardCVC, String cardVal) {
         this.users = users;
         this.cardNum = cardNum;
         this.cardPeriod =cardPeriod;
         this.cardCVC = cardCVC;
-        this.cardPw = cardPw;
-        this.carVal = carVal;
+        this.cardVal = cardVal;
     }
 }

@@ -42,8 +42,6 @@ public class AddrService {
     //주소 삭제
     @Transactional
     public void delete (Long addrCode) {
-        System.out.println("*******************");
-        System.out.println(addrCode);
         Addr addr = addrRepository.findById(addrCode).orElseThrow(() -> new IllegalArgumentException("삭제안됨"));
         addrRepository.delete(addr);
     }

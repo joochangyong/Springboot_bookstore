@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.bookstore.domain.Users.UsersMapperRepository">
+    <select id="usersSign" parameterType="com.project.bookstore.web.Users.dto.Users.UsersSignInDto" resultType="com.project.bookstore.web.Users.dto.Users.UsersInfoDto">
+        SELECT *
+        FROM users
+        WHERE ID = #{id} AND PW=#{pw};
+    </select>
+
+    <!--    <select id="findID" parameterType="com.wogjs.permission.login.Login" resultType="com.wogjs.permission.login.LoginFind">-->
+    <!--        SELECT userID-->
+    <!--        FROM tbUser-->
+    <!--        WHERE email = #{email} AND userName = #{userName};-->
+    <!--    </select>-->
+</mapper>

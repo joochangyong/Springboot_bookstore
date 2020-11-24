@@ -19,6 +19,7 @@ public class BookListDto {
     private Long bookPri;
     private String bookGen;
     private String bookDet;
+    private int bookSto;
 
     public BookListDto(Books entity) {
         this.isbn = entity.getIsbn();
@@ -29,5 +30,6 @@ public class BookListDto {
         this.bookPri = entity.getBookPri();
         this.bookGen = entity.getBookGen();
         this.bookDet = entity.getBookDet();
+        this.bookSto = entity.getBookSto();
     }
 }
