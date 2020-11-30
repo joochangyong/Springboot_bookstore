@@ -37,7 +37,7 @@ public class UsersService {
         Users entity = usersRepository.findById(id).orElseGet(Users::new);
         return entity;
     }
-
+    
     //정보불러오기
     @Transactional
     public List<UsersInfoDto> findAllUsers(String id) {

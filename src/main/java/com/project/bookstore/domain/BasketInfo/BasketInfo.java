@@ -28,9 +28,10 @@ public class BasketInfo implements Serializable {
     private Books books;
 
     @Builder
-    public BasketInfo(BasketMultiId basketMultiId, Long basAmount) {
+    public BasketInfo(BasketMultiId basketMultiId, Long basAmount, Basket basket, Books books) {
         this.basketMultiId = basketMultiId;
         this.basAmount = basAmount;
+        this.basket = basket;
+        this.books = books;
     }
-
 }

@@ -1,11 +1,8 @@
 package com.project.bookstore.web.Users.dto.Card;
 
-import java.sql.Date;
-
 import com.project.bookstore.domain.Cards.Cards;
 import com.project.bookstore.domain.Users.Users;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
