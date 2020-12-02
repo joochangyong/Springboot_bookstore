@@ -28,14 +28,17 @@ public class BasketApiController {
 
     @ApiOperation(value = "장바구니")
     @PostMapping("/basket/{isbn}")
-    public ResponseEntity<?> save (@PathVariable("isbn") String isbn, @RequestBody BasketCreateDto basketCreateDto, BasketInsertDto basketInsertDto) {
+    public ResponseEntity<?> bookInsert (@PathVariable("isbn") String isbn, BasketCreateDto basketCreateDto, @RequestBody BasketInsertDto basketInsertDto) {
         ApiResponse result = null;
         try {
             if (basketService.basketFind(usersInfo) == false) {
                 basketCreateDto.setUsers(basketService.findUsers(usersInfo));
                 basketService.basketInsert(basketCreateDto);
             }
-            result = new ApiResponse(true, "성공", basketService.basketInsert(basketCreateDto));
+            
+            result = new ApiResponse(true, "성공", basketService.basketinfoInsert(isbn, basketInsertDto, usersInfo));
+            System.out.println("수량확인");
+            System.out.println(basketInsertDto.getBasAmount());
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,4 +46,4 @@ public class BasketApiController {
             return ResponseEntity.badRequest().body(result);
         }
     }
-}
+} 

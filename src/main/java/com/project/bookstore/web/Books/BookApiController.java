@@ -58,7 +58,7 @@ public class BookApiController {
             return ResponseEntity.badRequest().body(result);
         }
     }
-
+    
     @ApiOperation(value = "도서검색")
     @PostMapping("/booksearch/{bookName}")
     public ResponseEntity<?> booksearch (@PathVariable("bookName") String bookName, @RequestBody BookListDto bookListDto) {

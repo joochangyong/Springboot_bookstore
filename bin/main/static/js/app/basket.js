@@ -8,18 +8,22 @@ var basket = {
     },
 
     basket : function () {
-        var isbn = $('#isbn').val();
-
+        var data = {
+            isbn: $('#isbn').val(),
+            basAmount: $('#basAmount').val()
+        }; 
+        
         $.ajax({
             type: 'POST',
-            url: '/basket',
+            url: '/basket/' + data.isbn,
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data)
+            data: JSON.stringify(data),
         }).done(function() {
             alert('장바구니에 등록되었습니다..');
-            window.location.href = '/basket/' + isbn;
-        }).fail(function() {
+            console.log(basAmount);
+            window.location.href = '/';
+        }).fail(function(error) {
             alert(JSON.stringify(error));
         });
     }
