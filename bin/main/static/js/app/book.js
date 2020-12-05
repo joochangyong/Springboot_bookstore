@@ -50,8 +50,6 @@ var main = {
 
     bookUpdate : function () {
         var data = {
-            bookTrans: $('#bookTrans').val(),
-            bookCov: $('#bookCov').val(),
             bookPri: $('#bookPri').val(),
             bookDet: $('#bookDet').val()
         };

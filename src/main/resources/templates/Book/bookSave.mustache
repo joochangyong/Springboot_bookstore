@@ -1,53 +1,56 @@
 {{>layout/header}}
 {{>layout/nav}}
-<h1>도서등록</h1>
-<div class="col-md-12">
-    <div class="col-md-4">
-        <form method="post">
-            <div class="form-group">
-                <label for="isbn">isbn</label>
-                <input type="text" class="form-control" id="isbn" placeholder="isbn을 입력하세요">
+<div class="container">
+    <h1 class="d-flex justify-content-center">도서등록</h1>
+        <div class="col-md-12 d-flex justify-content-center">
+            <div class="col-md-4">
+                <form method="post">
+                    <div class="form-group">
+                        <label for="isbn">isbn</label>
+                        <input type="text" class="form-control" id="isbn" placeholder="isbn을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookName">도서명</label>
+                        <input type="text" class="form-control" id="bookName" placeholder="책제목을 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookAut">저자</label>
+                        <input type="text" class="form-control" id="bookAut" placeholder="저자를 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookHouse">출판사</label>
+                        <input type="text" class="form-control" id="bookHouse" placeholder="출판사를 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookDate">출간일</label>
+                        <input type="date" class="form-control" id="bookDate" placeholder="출간일 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookPri">가격</label>
+                        <input type="text" class="form-control" id="bookPri" placeholder="가격 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookSto">수량</label>
+                        <input type="text" class="form-control" id="bookSto" placeholder="재고량 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookGen">장르</label>
+                        <input type="text" class="form-control" id="bookGen" placeholder="장르를 입력하세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookDet">상세정보</label>
+                        <textarea type="text" class="form-control" id="bookDet" placeholder="상세정보를 입력하세요"></textarea>
+                    </div>
+                </form>
+                <button type="button" class="btn btn-outline-dark" onclick="goBack();">취소</button>
+                <button type="button" class="btn btn-outline-dark" id="btn-booksSave">등록 완료</button>
             </div>
-            <div class="form-group">
-                <label for="bookName">도서명</label>
-                <input type="text" class="form-control" id="bookName" placeholder="책제목을 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="bookAut">저자</label>
-                <input type="text" class="form-control" id="bookAut" placeholder="저자를 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="bookHouse">출판사</label>
-                <input type="text" class="form-control" id="bookHouse" placeholder="출판사를 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="bookDate">출간일</label>
-                <input type="date" class="form-control" id="bookDate" placeholder="출간일 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="bookPri">가격</label>
-                <input type="text" class="form-control" id="bookPri" placeholder="가격 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="bookSto">수량</label>
-                <input type="text" class="form-control" id="bookSto" placeholder="재고량 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="bookGen">장르</label>
-                <input type="text" class="form-control" id="bookGen" placeholder="장르를 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="bookDet">상세정보</label>
-                <input type="text" class="form-control" id="bookDet" placeholder="상세정보를 입력하세요">
-            </div>
-        </form>
-        <button type="button" class="btn btn-outline-dark" onclick="goBack();">취소</button>
-        <button type="button" class="btn btn-outline-dark" id="btn-booksSave">등록 완료</button>
-    </div>
+        </div>
 </div>
 <script type="text/javascript">
     function goBack(){
         window.history.back();
     }
 </script>
+
 {{>layout/bookFooter}}
