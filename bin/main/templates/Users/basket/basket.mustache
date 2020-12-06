@@ -1,9 +1,9 @@
 {{>layout/header}}
 {{>layout/nav}}
 <div class="container">
-<a href="/books/bookSave" role="button" class="btn btn-outline-dark float-right">책등록</a>
+<a href="/books/bookList" role="button" class="btn btn-outline-dark float-right">책 목록</a>
 <h1 class="d-flex">장바구니</h1>
-<div class="col-md-12 ">
+<div class="col-md-8 ">
 <table class="list" >
     <tbody>
     {{^basketInfo}}
@@ -12,11 +12,13 @@
     {{#basketInfo}}
         <tr style="border-bottom: 1px solid #444444">
             <td>
-                <p>책제목 : {{books.bookName}} | 가격 : {{books.bookPri}} | 수량 : {{basAmount}} | 가격 : 
+                <p>책제목 : {{books.bookName}}</p>
+                <p>가격 : {{books.bookPri}} | 수량 : {{basAmount}} | 총합 : 
                 <script>
                     var count = {{books.bookPri}}*{{basAmount}};
                     document.write(count.toString());
                 </script>
+                <button type="button" class="btn btn-outline-dark float-right ml-5" id="btn-basketInfoDelete">삭제</button>
                 </p>
             </td>
         </tr>

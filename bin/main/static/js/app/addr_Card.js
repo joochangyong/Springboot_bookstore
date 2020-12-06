@@ -28,7 +28,7 @@ var addrCard = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data),
         }).done(function() {
-            alert('등록 되었습니다..');
+            alert('등록 되었습니다.');
             window.location.href = '/users/mypage/';
         }).fail(function(error) {
             alert(JSON.stringify(error));
@@ -53,7 +53,7 @@ var addrCard = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data),
         }).done(function() {
-            alert('등록 되었습니다..');
+            alert('등록 되었습니다.');
             window.location.href = '/users/mypage/';
         }).fail(function(error) {
             alert(JSON.stringify(error));

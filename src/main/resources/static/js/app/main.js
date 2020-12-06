@@ -36,7 +36,7 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data),
         }).done(function() {
-            alert('회원가입 되었습니다..');
+            alert('회원가입 되었습니다.');
             window.location.href = '/';
         }).fail(function() {
             if(data.id == "") {
@@ -61,7 +61,6 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-//            alert('로그인 되었습니다..');
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));
@@ -86,7 +85,7 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data),
         }).done(function() {
-            alert('정보가 수정 되었습니다..');
+            alert('정보가 수정 되었습니다.');
             window.location.href = '/users/mypage/';
         }).fail(function() {
             alert(JSON.stringify(error));
@@ -99,7 +98,7 @@ var main = {
             type: 'POST',
             url: '/api/users/logout',
         }).done(function(){
-            alert('로그아웃 되었습니다..');
+            alert('로그아웃 되었습니다.');
             window.location.href = '/';
         })
     }

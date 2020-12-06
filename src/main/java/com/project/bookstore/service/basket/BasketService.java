@@ -1,7 +1,7 @@
 package com.project.bookstore.service.basket;
 
-import com.project.bookstore.domain.Users.UsersRepository;
 import com.project.bookstore.session.UsersInfo;
+import com.project.bookstore.domain.Users.UsersRepository;
 import com.project.bookstore.web.Users.dto.Basket.BasketCreateDto;
 import com.project.bookstore.web.Users.dto.Basket.BasketInfoDto;
 import com.project.bookstore.web.Users.dto.Basket.BasketInsertDto;
@@ -69,4 +69,11 @@ public class BasketService {
                 .map(BasketInfoDto::new)
                 .collect(Collectors.toList());
     }
+
+    // //장바구니 삭제
+    // @Transactional
+    // public void delete (String book_isbn) {
+    //     BasketInfo basketInfo = basketInfoRepository.findByBasketInfo(book_isbn).orElseThrow(() -> new IllegalArgumentException("삭제안됨"));
+    //     basketInfoRepository.delete(basketInfo);
+    // }
 }

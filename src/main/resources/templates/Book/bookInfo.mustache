@@ -2,6 +2,9 @@
 {{>layout/nav}}
 <div class="container">
     <a href="/books/bookList" role="button" class="btn btn-outline-dark float-right">목록</a>
+    {{#master}}
+    <button type="button" class="btn btn-outline-dark float-right" id="btn-booksDelete">삭제</button>
+    {{/master}}
         <h1 class="d-flex justify-content-center">책 상세 정보</h1>
         <div class="col-md-12 d-flex justify-content-center">
         <table class="list">
@@ -23,7 +26,9 @@
 </div>
 <div class="col-md-7">
     <!-- 회원정보수정 modal -->
+    {{#master}}
     <button type="button" class="btn btn-outline-dark float-right" data-toggle="modal" data-target="#bookUpdateModal">수정 </button>
+    {{/master}}
     <!-- Modal -->
     <div class="modal fade" id="bookUpdateModal" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -54,7 +59,9 @@
             </div>
         </div>
     </div>
+    {{^master}}
     <button type="button" class="btn btn-outline-dark float-right" id="btn-basket">장바구니 담기</button>
+    {{/master}}
 </div>
 <script type="text/javascript">
     function goBack(){

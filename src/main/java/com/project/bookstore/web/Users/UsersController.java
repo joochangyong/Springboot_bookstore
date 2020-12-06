@@ -5,7 +5,6 @@ import com.project.bookstore.service.users.AddrService;
 import com.project.bookstore.service.users.CardService;
 import com.project.bookstore.service.users.UsersService;
 import com.project.bookstore.session.UsersInfo;
-import com.project.bookstore.web.Users.dto.Basket.BasketInfoDto;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -20,30 +19,40 @@ public class UsersController {
     private final CardService cardService;
     private final BasketService basketService;
     private final UsersInfo usersInfo;
-	private final BasketInfoDto basketInfoDto;
-    
-    //회원가입
+
+    // 회원가입
     @GetMapping("/users/signUp")
-    public String signUp() { return "Users/signUp"; }
+    public String signUp() {
+        return "Users/signUp";
+    }
 
-    //로그인화면
+    // 로그인화면
     @GetMapping("/users/signIn")
-    public String signIn() { return "Users/signIn"; }
+    public String signIn() {
+        return "Users/signIn";
+    }
 
-    //마이페이지
+    // 마이페이지
     @GetMapping("/users/mypage")
     public String mypage(Model model) {
+        if (usersInfo.getUserId() != null) {
+            if (usersInfo.getUserId().equals("master")) {
+                System.out.println("-------------------------------------------------");
+                System.out.println(usersInfo.getUserId());
+                model.addAttribute("master", usersService.findAllUsers(usersInfo.getUserId()));
+            }
+        }
         model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
         model.addAttribute("addrInfo", addrService.findByUsers_Id(usersInfo.getUserId()));
         model.addAttribute("cardInfo", cardService.findByUsers_Id(usersInfo.getUserId()));
         return "Users/mypage";
     }
 
-    //장바구니 정보
+    // 장바구니 정보
     @GetMapping("/users/basket")
-    public String basket(Model model) { 
+    public String basket(Model model) {
         model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
         model.addAttribute("basketInfo", basketService.basketInfo());
-        return "Users/basket/basket"; 
+        return "Users/basket/basket";
     }
 }

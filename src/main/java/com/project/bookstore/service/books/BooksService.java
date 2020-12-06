@@ -26,8 +26,6 @@ public class BooksService {
     //isbn중복확인
     @Transactional
     public Books findById(String isbn) {
-        System.out.println("*****************");
-        System.out.println(isbn);
         Books entity = booksRepository.findById(isbn).orElseGet(Books::new);
 
         return entity;
