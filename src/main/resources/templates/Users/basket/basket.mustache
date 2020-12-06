@@ -1,4 +1,28 @@
 {{>layout/header}}
 {{>layout/nav}}
-1234
-{{>layout/footer}}
+<div class="container">
+<a href="/books/bookSave" role="button" class="btn btn-outline-dark float-right">책등록</a>
+<h1 class="d-flex">장바구니</h1>
+<div class="col-md-12 ">
+<table class="list" >
+    <tbody>
+    {{^basketInfo}}
+    <p class="d-flex">장바구니가 비었습니다</p>
+    {{/basketInfo}}
+    {{#basketInfo}}
+        <tr style="border-bottom: 1px solid #444444">
+            <td>
+                <p>책제목 : {{books.bookName}} | 가격 : {{books.bookPri}} | 수량 : {{basAmount}} | 가격 : 
+                <script>
+                    var count = {{books.bookPri}}*{{basAmount}};
+                    document.write(count.toString());
+                </script>
+                </p>
+            </td>
+        </tr>
+    {{/basketInfo}}
+    </tbody>
+</table>
+</div>
+</div>
+{{>layout/bookFooter}}

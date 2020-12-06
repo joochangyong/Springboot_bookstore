@@ -4,6 +4,7 @@ import com.project.bookstore.config.ApiResponse;
 import com.project.bookstore.service.basket.BasketService;
 import com.project.bookstore.session.UsersInfo;
 import com.project.bookstore.web.Users.dto.Basket.BasketCreateDto;
+import com.project.bookstore.web.Users.dto.Basket.BasketInfoDto;
 import com.project.bookstore.web.Users.dto.Basket.BasketInsertDto;
 
 import org.springframework.http.ResponseEntity;
@@ -31,12 +32,11 @@ public class BasketApiController {
     public ResponseEntity<?> bookInsert (@PathVariable("isbn") String isbn, BasketCreateDto basketCreateDto, @RequestBody BasketInsertDto basketInsertDto) {
         ApiResponse result = null;
         try {
-            if (basketService.basketFind(usersInfo) == false) {
-                basketCreateDto.setUsers(basketService.findUsers(usersInfo));
+            if (basketService.basketFind() == false) {
+                basketCreateDto.setUsers(basketService.findUsers());
                 basketService.basketInsert(basketCreateDto);
             }
-            
-            result = new ApiResponse(true, "성공", basketService.basketinfoInsert(isbn, basketInsertDto, usersInfo));
+            result = new ApiResponse(true, "성공", basketService.basketInfoInsert(isbn, basketInsertDto));
             System.out.println("수량확인");
             System.out.println(basketInsertDto.getBasAmount());
             return ResponseEntity.ok().body(result);

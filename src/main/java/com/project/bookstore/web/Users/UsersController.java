@@ -1,9 +1,12 @@
 package com.project.bookstore.web.Users;
 
+import com.project.bookstore.service.basket.BasketService;
 import com.project.bookstore.service.users.AddrService;
 import com.project.bookstore.service.users.CardService;
 import com.project.bookstore.service.users.UsersService;
 import com.project.bookstore.session.UsersInfo;
+import com.project.bookstore.web.Users.dto.Basket.BasketInfoDto;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +18,10 @@ public class UsersController {
     private final UsersService usersService;
     private final AddrService addrService;
     private final CardService cardService;
+    private final BasketService basketService;
     private final UsersInfo usersInfo;
+	private final BasketInfoDto basketInfoDto;
+    
     //회원가입
     @GetMapping("/users/signUp")
     public String signUp() { return "Users/signUp"; }
@@ -33,7 +39,11 @@ public class UsersController {
         return "Users/mypage";
     }
 
-    //장바구니
+    //장바구니 정보
     @GetMapping("/users/basket")
-    public String basket() { return "Users/basket/basket"; }
+    public String basket(Model model) { 
+        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
+        model.addAttribute("basketInfo", basketService.basketInfo());
+        return "Users/basket/basket"; 
+    }
 }

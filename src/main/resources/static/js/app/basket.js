@@ -22,7 +22,7 @@ var basket = {
         }).done(function() {
             alert('장바구니에 등록되었습니다..');
             console.log(basAmount);
-            window.location.href = '/';
+            window.location.href = '/books/bookInfo/' + data.isbn;
         }).fail(function(error) {
             alert(JSON.stringify(error));
         });
