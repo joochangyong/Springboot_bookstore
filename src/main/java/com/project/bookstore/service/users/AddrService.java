@@ -27,8 +27,8 @@ public class AddrService {
     
     //정보 불러오기
     @Transactional
-    public List<AddrInfoDto> findByUsers_Id(String id) {
-        return addrRepository.findByUsers_Id(id).stream()
+    public List<AddrInfoDto> findByUsers_Id(UsersInfo usersInfo) {
+        return addrRepository.findByUsers_Id(usersInfo.getUserId()).stream()
                 .map(AddrInfoDto::new)
                 .collect(Collectors.toList());
     }

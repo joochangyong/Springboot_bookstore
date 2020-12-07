@@ -29,9 +29,11 @@ public class OrdersInfo implements Serializable {
     private Books books;
 
     @Builder
-    private OrdersInfo (OrdersMultiId ordersMultiId, Long orderAmount) {
+    private OrdersInfo (OrdersMultiId ordersMultiId, Long orderAmount, Orders orders, Books books) {
         this.ordersMultiId = ordersMultiId;
         this.orderAmount = orderAmount;
+        this.orders = orders;
+        this.books = books;
     }
 
 }

@@ -1,14 +1,14 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
     <h3 class="my-0 mr-md-auto font-weight-normal"><a href="/" role="button" class="text-dark">BookStore</a></h3>
     <nav class="my-2 my-md-0 mr-md-3">
-        {{#userInfo}}
+        {{#usersInfo}}
             {{name}}님
             <a href="/users/mypage" role="button" class="btn btn-outline-dark"> 마이페이지</a>
-            <a href="/users/basket" role="button" class="btn btn-outline-dark"> 장바구니</a>
+            <a href="/basket" role="button" class="btn btn-outline-dark"> 장바구니</a>
             <button type="button" class="btn btn-outline-dark" id="btn-logout">로그아웃</button>
-        {{/userInfo}}
-        {{^userInfo}}
+        {{/usersInfo}}
+        {{^usersInfo}}
             <a href="/users/signIn" role="button" class="btn btn-outline-dark">로그인</a>
-        {{/userInfo}}
+        {{/usersInfo}}
     </nav>
 </div>

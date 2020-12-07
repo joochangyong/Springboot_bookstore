@@ -5,13 +5,13 @@
     <div class="col-md-12">
         <div class="d-flex">
             <div class="col-md-5">
-                {{#userInfo}}
+                {{#usersInfo}}
                     <h1>{{name}}님 마이페이지</h1>
                     <p>이름 : {{name}}</p>
                     <p>성별 : {{sex}}</p>
                     <p>전화번호 : {{num}}</p>
                     <p>메일주소 : {{mail}}</p>
-                {{/userInfo}}
+                {{/usersInfo}}
                 <!-- 회원정보수정 modal -->
                 <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#usersUpdateModal"> 회원정보 수정 </button>
                 <!-- Modal -->
@@ -26,7 +26,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                {{#userInfo}}
+                                {{#usersInfo}}
                                     <input type="text" class="form-control" id="id" value="{{id}}" hidden>
                                     <div class="form-group">
                                         <label for="pw">비밀번호</label>
@@ -40,7 +40,7 @@
                                         <label for="mail"> 메일 </label>
                                         <input type="email" class="form-control" id="mail" value="{{mail}}">
                                     </div>
-                                {{/userInfo}}
+                                {{/usersInfo}}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

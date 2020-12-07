@@ -22,7 +22,7 @@ public class BookController {
     // 책등록
     @GetMapping("/books/bookSave")
     public String bookSave(Model model) {
-        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
+        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
         return "Book/bookSave";
     }
 
@@ -31,12 +31,10 @@ public class BookController {
     public String bookList(Model model) {
         if (usersInfo.getUserId() != null) {
             if (usersInfo.getUserId().equals("master")) {
-                System.out.println("-------------------------------------------------");
-                System.out.println(usersInfo.getUserId());
-                model.addAttribute("master", usersService.findAllUsers(usersInfo.getUserId()));
+                model.addAttribute("master", usersService.findAllUsers(usersInfo));
             }
         }
-        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
+        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
         model.addAttribute("bookList", booksService.findAllBooks());
         return "Book/bookList";
     }
@@ -46,10 +44,12 @@ public class BookController {
     public String bookInfo(@PathVariable("isbn") String isbn, Model model) {
         if (usersInfo.getUserId() != null) {
             if (usersInfo.getUserId().equals("master")) {
-                model.addAttribute("master", usersService.findAllUsers(usersInfo.getUserId()));
+                model.addAttribute("master", usersService.findAllUsers(usersInfo));
             }
         }
-        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
+        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
+        System.out.println("---------------------------------");
+        System.out.println(usersService.findAllUsers(usersInfo));
         model.addAttribute("bookInfo", booksService.findBybookInfo(isbn));
         return "Book/bookInfo";
     }
@@ -57,7 +57,7 @@ public class BookController {
     // 책 정보 수정
     @GetMapping("/books/bookUpdate/{isbn}")
     public String bookUpdate(@PathVariable("isbn") String isbn, Model model) {
-        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
+        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
         model.addAttribute("bookInfo", booksService.findBybookInfo(isbn));
         return "Book/bookUpdate";
     }

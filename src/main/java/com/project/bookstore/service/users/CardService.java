@@ -27,8 +27,8 @@ public class CardService {
     
     //정보 불러오기
     @Transactional
-    public List<CardInfoDto> findByUsers_Id(String id) {
-        return cardsRepository.findByUsers_Id(id).stream()
+    public List<CardInfoDto> findByUsers_Id(UsersInfo usersInfo) {
+        return cardsRepository.findByUsers_Id(usersInfo.getUserId()).stream()
                 .map(CardInfoDto::new)
                 .collect(Collectors.toList());
     }
@@ -42,8 +42,6 @@ public class CardService {
     //카드 삭제
     @Transactional
     public void delete (String cardNum) {
-        System.out.println("---------------------");
-        System.out.println(cardNum);
         Cards cards = cardsRepository.findById(cardNum).orElseThrow(() -> new IllegalArgumentException("삭제안됨"));
         cardsRepository.delete(cards);
     }

@@ -37,22 +37,20 @@ public class UsersController {
     public String mypage(Model model) {
         if (usersInfo.getUserId() != null) {
             if (usersInfo.getUserId().equals("master")) {
-                System.out.println("-------------------------------------------------");
-                System.out.println(usersInfo.getUserId());
-                model.addAttribute("master", usersService.findAllUsers(usersInfo.getUserId()));
+                model.addAttribute("master", usersService.findAllUsers(usersInfo));
             }
         }
-        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
-        model.addAttribute("addrInfo", addrService.findByUsers_Id(usersInfo.getUserId()));
-        model.addAttribute("cardInfo", cardService.findByUsers_Id(usersInfo.getUserId()));
+        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
+        model.addAttribute("addrInfo", addrService.findByUsers_Id(usersInfo));
+        model.addAttribute("cardInfo", cardService.findByUsers_Id(usersInfo));
         return "Users/mypage";
     }
 
     // 장바구니 정보
-    @GetMapping("/users/basket")
+    @GetMapping("/basket")
     public String basket(Model model) {
-        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
+        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
         model.addAttribute("basketInfo", basketService.basketInfo());
-        return "Users/basket/basket";
+        return "Orders/basket";
     }
 }

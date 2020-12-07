@@ -29,18 +29,24 @@ public class Orders {
     private String orderBas; //주문기본주소
     private String orderDet; //주문상세주소
 
+    private String cardNum; //카드번호
+    private String cardPeriod; //유효기간
+    private String carVal; //카드종류
+
     @OneToMany(mappedBy = "orders")
     private List<OrdersInfo> ordersInfo;
 
-
     @Builder
-    private Orders (Users users, Date orderDate, Long orderSum, Long orderZip, String orderBas, String orderDet, List<OrdersInfo> ordersInfo) {
+    private Orders (Users users, Date orderDate, Long orderSum, Long orderZip, String orderBas, String orderDet, String cardNum, String cardPeriod, String carVal, List<OrdersInfo> ordersInfo) {
         this.users = users;
         this.orderDate = orderDate;
         this.orderSum = orderSum;
         this.orderZip = orderZip;
         this.orderBas = orderBas;
         this.orderDet = orderDet;
+        this.cardNum = cardNum;
+        this.cardPeriod = cardPeriod;
+        this.carVal = carVal;
         this.ordersInfo = ordersInfo;
     }
 }
