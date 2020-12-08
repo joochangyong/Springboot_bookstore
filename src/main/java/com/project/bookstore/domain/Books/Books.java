@@ -55,4 +55,8 @@ public class Books {
         this.bookPri = bookPri;
         this.bookDet = bookDet;
     }
+
+	public void updateSto(Long sto) {
+        this.bookSto = bookSto;
+	}
 }

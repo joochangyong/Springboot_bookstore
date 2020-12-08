@@ -1,4 +1,7 @@
 package com.project.bookstore.domain.OrdersInfo;
 
-public interface OrdersInfoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrdersInfoRepository extends JpaRepository<OrdersInfo, Long>{
+
 }

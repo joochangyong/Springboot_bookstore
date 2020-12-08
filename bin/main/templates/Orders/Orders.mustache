@@ -9,8 +9,9 @@
         <tr style="border-bottom: 1px solid #444444">
             <td>
             {{#bookInfo}}
-                <p>책제목 : {{bookName}} | 가격 :  {{bookPri}} | 수량 : {{#orderAmount}}{{orderAmount}}{{/orderAmount}} | 총합 : 
-                <script>
+            <input type="text" class="form-control" id="isbn" value="{{isbn}}" hidden>
+                <p>책제목 : {{bookName}} | 가격 : {{bookPri}} | 수량 : {{#orderAmount}}{{orderAmount}}{{/orderAmount}} | 총합 : 
+                <script id="orderSum">
                     document.write({{bookPri}}*{{orderAmount}});
                 </script>
                 </p>
@@ -23,7 +24,7 @@
     <select class="custom-select" id="addr">
         <option selected value="0">선택해주세요</option>
         {{#addrInfo}}
-            <option value="{{addrCode}}">{{addrName}} / {{addrZip}} / {{addrBas}} / {{addrDet}}</option>
+            <option value="{{addrCode}}">{{addrName}} | {{addrZip}} | {{addrBas}} | {{addrDet}}</option>
         {{/addrInfo}}
     </select>
 </div>
@@ -31,7 +32,7 @@
     <select class="custom-select" id="card">
         <option selected value="0">선택해주세요</option>
         {{#cardInfo}}
-            <option value="{{cardNum}}">{{cardNum}} / {{cardVal}}</option>
+            <option value="{{cardNum}}">{{cardNum}} | {{cardVal}}</option>
         {{/cardInfo}}
     </select>
 </div>

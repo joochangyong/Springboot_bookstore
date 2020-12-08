@@ -48,8 +48,6 @@ public class BookController {
             }
         }
         model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
-        System.out.println("---------------------------------");
-        System.out.println(usersService.findAllUsers(usersInfo));
         model.addAttribute("bookInfo", booksService.findBybookInfo(isbn));
         return "Book/bookInfo";
     }

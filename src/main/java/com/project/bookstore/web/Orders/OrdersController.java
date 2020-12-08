@@ -28,9 +28,10 @@ public class OrdersController {
     public String order(@RequestParam("isbn") String isbn, @RequestParam("basAmount") Long basAmount, String id, Model model) {
         model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
         model.addAttribute("bookInfo", booksService.findBybookInfo(isbn));
-        model.addAttribute("addrInfo", addrService.findByUsers_Id(usersInfo));
-        model.addAttribute("cardInfo", cardService.findByUsers_Id(usersInfo));
+        model.addAttribute("addrInfo", addrService.findAddr(usersInfo));
+        model.addAttribute("cardInfo", cardService.findCard(usersInfo));
         model.addAttribute("orderAmount", basAmount);
+        System.out.println(basAmount);
 
         return "Orders/Orders";
     }

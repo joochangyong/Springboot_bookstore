@@ -41,8 +41,8 @@ public class UsersController {
             }
         }
         model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
-        model.addAttribute("addrInfo", addrService.findByUsers_Id(usersInfo));
-        model.addAttribute("cardInfo", cardService.findByUsers_Id(usersInfo));
+        model.addAttribute("addrInfo", addrService.findAddr(usersInfo));
+        model.addAttribute("cardInfo", cardService.findCard(usersInfo));
         return "Users/mypage";
     }
 

@@ -46,6 +46,11 @@ public class BooksService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
+    public Books findBookIsbn(String isbn) {
+        return booksRepository.findById(isbn).get();
+    }
+
     //도서 수정
     @Transactional
     public Books bookUpdate(String isbn, BookUpdateDto bookUpdateDto) {
@@ -67,5 +72,13 @@ public class BooksService {
     public void delete (String isbn) {
         Books books = booksRepository.findById(isbn).orElseThrow(() -> new IllegalArgumentException("삭제안됨"));
         booksRepository.delete(books);
+    }
+
+    //수량 수정
+    @Transactional
+    public void updateSto(String isbn, Long sto) {
+        Books books = booksRepository.findById(isbn).orElseThrow(() -> new IllegalArgumentException("error"));
+
+        books.updateSto(sto);
     }
 }
