@@ -5,7 +5,7 @@ import com.project.bookstore.config.ApiResponse;
 import com.project.bookstore.service.orders.OrdersService;
 
 import com.project.bookstore.web.Orders.dto.OrdersDto;
-import com.project.bookstore.web.Orders.dto.OrdersInfoDto;
+import com.project.bookstore.web.Orders.dto.OrdersInsertDto;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,12 +30,12 @@ public class OrdersApiController {
     @ApiOperation(value = "주문")
     @PostMapping("/ordersBuy")
     public ResponseEntity<?> ordersBuy(@RequestParam("isbn") String isbn, @RequestParam("orderAmount") Long basAmount,
-            @RequestBody OrdersDto ordersDto, OrdersInfoDto ordersInfoDto) {
+            @RequestBody OrdersDto ordersDto, OrdersInsertDto ordersInsertDto) {
         ApiResponse result = null;
 
         try {
             ordersService.ordersInsert(ordersDto);
-            ordersService.ordersInfoInsert(isbn, basAmount, ordersInfoDto);
+            ordersService.ordersInfoInsert(isbn, basAmount, ordersInsertDto);
             result = new ApiResponse(true, "성공", null);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package com.project.bookstore.web.Users;
 
 import com.project.bookstore.service.basket.BasketService;
+import com.project.bookstore.service.orders.OrdersService;
 import com.project.bookstore.service.users.AddrService;
 import com.project.bookstore.service.users.CardService;
 import com.project.bookstore.service.users.UsersService;
@@ -14,10 +15,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 @Controller
 public class UsersController {
-    private final UsersService usersService;
     private final AddrService addrService;
     private final CardService cardService;
+    private final UsersService usersService;
     private final BasketService basketService;
+    private final OrdersService ordersService;
     private final UsersInfo usersInfo;
 
     // 회원가입
@@ -43,6 +45,9 @@ public class UsersController {
         model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
         model.addAttribute("addrInfo", addrService.findAddr(usersInfo));
         model.addAttribute("cardInfo", cardService.findCard(usersInfo));
+        model.addAttribute("orderInfo", ordersService.ordersInfo());
+        System.out.println("--------------------------");
+        System.out.println(ordersService.ordersInfo());
         return "Users/mypage";
     }
 

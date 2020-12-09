@@ -2,6 +2,8 @@ package com.project.bookstore.service.orders;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -16,6 +18,7 @@ import com.project.bookstore.service.users.UsersService;
 import com.project.bookstore.session.UsersInfo;
 import com.project.bookstore.web.Orders.dto.OrdersDto;
 import com.project.bookstore.web.Orders.dto.OrdersInfoDto;
+import com.project.bookstore.web.Orders.dto.OrdersInsertDto;
 
 import org.springframework.stereotype.Service;
 
@@ -42,22 +45,22 @@ public class OrdersService {
         Long addrCode = ordersDto.getAddrCode();
         String cardNum = ordersDto.getCardNum();
 
-        ordersDto.setUsers(usersService.findByUsers(usersInfo));
         ordersDto.setOrderDate(nowDate);
+        ordersDto.setUsers(usersService.findByUsers(usersInfo));
+        ordersDto.setCarVal(cardService.findCardNum(cardNum).getCardVal());
         ordersDto.setOrderZip(addrService.findAddrCode(addrCode).getAddrZip());
         ordersDto.setOrderBas(addrService.findAddrCode(addrCode).getAddrBas());
         ordersDto.setOrderDet(addrService.findAddrCode(addrCode).getAddrDet());
         ordersDto.setCardPeriod(cardService.findCardNum(cardNum).getCardPeriod());
-        ordersDto.setCarVal(cardService.findCardNum(cardNum).getCardVal());
         ordersRepository.save(ordersDto.toEntity());
     }
 
     @Transactional
-    public void ordersInfoInsert(String isbn, Long basAmount, OrdersInfoDto ordersInfoDto) {
+    public void ordersInfoInsert(String isbn, Long basAmount, OrdersInsertDto ordersInsertDto) {
         OrdersMultiId ordersMultiId = new OrdersMultiId();
 
-        ordersInfoDto.setBooks(booksService.findBookIsbn(isbn));
-        ordersInfoDto.setOrderAmount(basAmount);
+        ordersInsertDto.setBooks(booksService.findBookIsbn(isbn));
+        ordersInsertDto.setOrderAmount(basAmount);
         
         //재고량
         Books books = new Books();
@@ -67,8 +70,15 @@ public class OrdersService {
 
         ordersMultiId.setIsbn(isbn);
         ordersMultiId.setOrderCode(ordersRepository.findByUsers_IdOrderByOrderCodeDesc(usersInfo.getUserId()).get(0).getOrderCode());
-        ordersInfoDto.setOrdersMultiId(ordersMultiId);
-        ordersInfoDto.setOrders(ordersRepository.findByUsers_IdOrderByOrderCodeDesc(usersInfo.getUserId()).get(0));
-        ordersInfoRepository.save(ordersInfoDto.toEntity());
+        ordersInsertDto.setOrdersMultiId(ordersMultiId);
+        ordersInsertDto.setOrders(ordersRepository.findByUsers_IdOrderByOrderCodeDesc(usersInfo.getUserId()).get(0));
+        ordersInfoRepository.save(ordersInsertDto.toEntity());
+    }
+
+    @Transactional
+    public List<OrdersInfoDto> ordersInfo() {
+        return ordersInfoRepository.findTop1ByOrders(ordersRepository.findByUsers_Id(usersInfo.getUserId())).stream()
+            .map(OrdersInfoDto::new)
+            .collect(Collectors.toList());
     }
 }

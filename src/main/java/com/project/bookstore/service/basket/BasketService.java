@@ -63,11 +63,11 @@ public class BasketService {
     @Transactional
     public Long basketInfoInsert(String isbn, BasketInsertDto basketInsertDto) {
         BasketMultiId basketMultiId = new BasketMultiId();
-        basketMultiId.setBasNum(basketRepository.findByUsers_Id(usersInfo.getUserId()).getBasNum());
         basketMultiId.setIsbn(isbn);
+        basketMultiId.setBasNum(basketRepository.findByUsers_Id(usersInfo.getUserId()).getBasNum());
         basketInsertDto.setBasketMultiId(basketMultiId);
-        basketInsertDto.setBasket(basketRepository.findByUsers_Id(usersInfo.getUserId()));
         basketInsertDto.setBooks(booksRepository.findById(isbn).get());
+        basketInsertDto.setBasket(basketRepository.findByUsers_Id(usersInfo.getUserId()));
         return basketInfoRepository.save(basketInsertDto.toEntity()).getBasketMultiId().getBasNum();
     }
 

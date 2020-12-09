@@ -5,24 +5,25 @@ import com.project.bookstore.domain.Orders.Orders;
 import com.project.bookstore.domain.OrdersInfo.OrdersInfo;
 import com.project.bookstore.domain.OrdersInfo.OrdersMultiId;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
-public class OrdersInfoDto {
+public class OrdersInsertDto {
     private OrdersMultiId ordersMultiId;
     private Long orderAmount;
     private Orders orders;
     private Books books;
 
-    public OrdersInfoDto(OrdersInfo entity) {
-        this.ordersMultiId = entity.getOrdersMultiId();
-        this.orderAmount = entity.getOrderAmount();
-        this.orders = entity.getOrders();
-        this.books = entity.getBooks();
+    public OrdersInfo toEntity() {
+        return OrdersInfo.builder()
+        .ordersMultiId(ordersMultiId)
+        .orderAmount(orderAmount)
+        .orders(orders)
+        .books(books)
+        .build();
     }
-    
 }

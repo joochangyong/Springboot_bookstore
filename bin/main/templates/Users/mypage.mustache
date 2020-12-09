@@ -184,10 +184,34 @@
                     {{/cardInfo}}
                     </tbody>
                 </table>
-                
-            </div>
+                </div>
             {{/master}}
         </div>
+        <div>
+        <h1>주문</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">책이름</th>
+                <th scope="col">수량</th>
+                <th scope="col">가격</th>
+                <th scope="col">배송지</th>
+                <th scope="col">주문 시간</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#orderInfo}}
+                <tr>
+                    <td>{{books.bookName}}</td>
+                    <td>{{orderAmount}}</td>
+                    <td>{{orders.orderSum}}</td>
+                    <td>{{orders.orderBas}} {{orders.orderDet}}</td>
+                    <td>{{orders.orderDate}}</td>
+                </tr>
+            {{/orderInfo}}
+            </tbody>
+        </table>
+        <div>
     </div>
 </div>
 {{>layout/footer}}
