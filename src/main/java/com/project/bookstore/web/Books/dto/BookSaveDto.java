@@ -1,6 +1,6 @@
 package com.project.bookstore.web.Books.dto;
 
-import com.project.bookstore.domain.book.Books;
+import com.project.bookstore.domain.Books.Books;
 import lombok.*;
 
 import java.util.Date;
@@ -10,43 +10,40 @@ import java.util.Date;
 @ToString
 @NoArgsConstructor
 public class BookSaveDto {
-    private String ISBM;
+    private String isbn;
     private String bookName;
     private String bookAut;
-    private String bookTrans;
     private String bookHouse;
     private Date bookDate;
-    private String bookCov;
-    private int bookPri;
+    private Long bookPri;
     private String bookGen;
     private String bookDet;
+    private Long bookSto;
 
     @Builder
-    public BookSaveDto(String ISBM, String bookName, String bookAut, String bookTrans, String bookHouse, Date bookDate, String bookCov, int bookPri, String bookGen, String bookDet) {
-        this.ISBM = ISBM;
+    public BookSaveDto(String isbn, String bookName, String bookAut,  String bookHouse, Date bookDate, Long bookPri, String bookGen, String bookDet, Long bookSto) {
+        this.isbn = isbn;
         this.bookName = bookName;
         this.bookAut = bookAut;
-        this.bookTrans = bookTrans;
         this.bookHouse = bookHouse;
         this.bookDate = bookDate;
-        this.bookCov = bookCov;
         this.bookPri = bookPri;
         this.bookGen = bookGen;
         this.bookDet = bookDet;
+        this.bookSto = bookSto;
     }
 
     public Books toEntity() {
         return Books.builder()
-                .ISBM(ISBM)
+                .isbn(isbn)
                 .bookName(bookName)
                 .bookAut(bookAut)
-                .bookTrans(bookTrans)
                 .bookHouse(bookHouse)
                 .bookDate(bookDate)
-                .bookCov(bookCov)
                 .bookPri(bookPri)
                 .bookGen(bookGen)
                 .bookDet(bookDet)
+                .bookSto(bookSto)
                 .build();
     }
 }

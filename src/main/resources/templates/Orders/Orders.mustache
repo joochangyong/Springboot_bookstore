@@ -1,0 +1,48 @@
+{{>layout/header}}
+{{>layout/nav}}
+<div class="container">
+<a href="/books/bookList" role="button" class="btn btn-outline-dark float-right">책 목록</a>
+<h1 class="d-flex">주문</h1>
+<div class="col-md-12 ">
+<table class="list" >
+    <tbody>
+        <tr>
+            <td>
+            {{#bookInfo}}
+            <input type="text" class="form-control" id="isbn" value="{{isbn}}" hidden/>
+                <div class="row">
+                    <p>책제목 : {{bookName}} | 가격 : {{bookPri}} | 수량 : {{#orderAmount}}{{orderAmount}}{{/orderAmount}}</p>
+                    <div class="ml-1 row">
+                        <p>총합 : </p>
+                        <script>
+                            document.write("<p id='orderSum'>"+{{bookPri}}*{{orderAmount}}+"</p>");
+                        </script>
+                    </div>
+                </div>
+            {{/bookInfo}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+<hr/>
+
+<div>배송지
+    <select class="custom-select" id="addr">
+        <option selected value="0">배송지를 선택해주세요</option>
+        {{#addrInfo}}
+            <option value="{{addrCode}}">{{addrName}} | {{addrZip}} | {{addrBas}} | {{addrDet}}</option>
+        {{/addrInfo}}
+    </select>
+</div>
+<div>카드
+    <select class="custom-select" id="card">
+        <option selected value="0">카드를 선택해주세요</option>
+        {{#cardInfo}}
+            <option value="{{cardNum}}">{{cardNum}} | {{cardVal}}</option>
+        {{/cardInfo}}
+    </select>
+</div>
+<button type="button" class="btn btn-outline-dark float-right mt-5" id="btn-ordersBuy">주문하기</button>
+</div>
+</div>
+{{>layout/footer}}

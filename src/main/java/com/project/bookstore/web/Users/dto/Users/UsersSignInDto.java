@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class UsersSignInDto {
     private String id;
     private String pw;
+    private String name;
 }
