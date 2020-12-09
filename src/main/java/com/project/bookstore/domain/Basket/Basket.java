@@ -23,14 +23,14 @@ public class Basket {
     @JoinColumn(name = "users_id")
     private Users users;
 
-    private Date basCre; //장바구니 생성일자
+    private String basCre; //장바구니 생성일자
     private Long basSum; //물건총가격
 
     @OneToMany(mappedBy = "basket") //mappdeBy : 관계의 주인을 정의.
     private List<BasketInfo> basketInfo;
 
     @Builder
-    private Basket (Users users, Date basCre, Long basSum, List<BasketInfo> basketInfo) {
+    private Basket (Users users, String basCre, Long basSum, List<BasketInfo> basketInfo) {
         this.users = users;
         this.basCre = basCre;
         this.basSum = basSum;

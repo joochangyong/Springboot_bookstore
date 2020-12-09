@@ -47,6 +47,11 @@ public class UsersService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
+    public Users findByUsers(UsersInfo usersInfo) {
+        return usersRepository.findById(usersInfo.getUserId()).get();
+    }
+
     //회원정보수정
     @Transactional
     public Object Update(String id, UsersUpdateDto usersUpdateDto) {

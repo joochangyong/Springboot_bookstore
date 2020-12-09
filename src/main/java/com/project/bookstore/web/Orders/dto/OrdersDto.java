@@ -15,7 +15,7 @@ import lombok.Setter;
 public class OrdersDto {
     private Users users;
     private Long addrCode;
-    private Date orderDate;
+    private String orderDate;
     private Long orderSum;
     private Long orderZip;
     private String orderBas;

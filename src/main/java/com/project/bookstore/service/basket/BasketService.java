@@ -7,6 +7,8 @@ import com.project.bookstore.web.Users.dto.Basket.BasketInfoDto;
 import com.project.bookstore.web.Users.dto.Basket.BasketInsertDto;
 import com.project.bookstore.domain.Users.Users;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 
+
 @RequiredArgsConstructor
 @Service
 public class BasketService {
@@ -28,6 +31,11 @@ public class BasketService {
     private final BooksRepository booksRepository;
     private final BasketInfoRepository basketInfoRepository;
     private final UsersInfo usersInfo;
+
+    //현재시간
+    Date now = new Date();
+    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    String nowDate = format.format(now);
 
     @Transactional(readOnly = true)
     public Users findUsers() {
@@ -47,6 +55,7 @@ public class BasketService {
     // 장바구니 생성
     @Transactional
     public Long basketInsert(BasketCreateDto basketCreateDto) {
+        basketCreateDto.setBasCre(nowDate);
         return basketRepository.save(basketCreateDto.toEntity()).getBasNum();
     }
 

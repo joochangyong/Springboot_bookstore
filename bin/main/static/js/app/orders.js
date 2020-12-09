@@ -65,26 +65,30 @@ var orders = {
         window.location.href = '/orders?isbn=' + data.isbn + '&basAmount=' + data.basAmount;
       },
 
-      ordersBuy : function () {
+    ordersBuy : function () {
         var data = {
             addrCode: $('#addr option:selected').val(),
             cardNum: $('#card option:selected').val(),
-            orderSum: $('#orderSum').val()
+            orderSum: $('#orderSum').text()
         }; 
         
-        $.ajax({
-            type: 'POST',
-            url: '/ordersBuy?isbn='+searchParam('isbn')+'&orderAmount='+searchParam('basAmount'),
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8',
-            data: JSON.stringify(data),
-        }).done(function() {
-            alert('구매완료했습니다.');
-            console.log(basAmount);
-            window.location.href = '/users/mypage/';
-        }).fail(function(error) {
-            alert(JSON.stringify(error));
-        });
+        if(data.addrCode == "0" || data.cardNum == "0") {
+            alert("배송지와 카드를 선택해주세요");
+            return false
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '/ordersBuy?isbn='+searchParam('isbn')+'&orderAmount='+searchParam('basAmount'),
+                dataType: 'json',
+                contentType:'application/json; charset=utf-8',
+                data: JSON.stringify(data),
+            }).done(function() {
+                alert('구매완료했습니다.');
+                window.location.href = '/users/mypage/';
+            }).fail(function(error) {
+                alert(JSON.stringify(error));
+            });
+        }
     }
 };
 
