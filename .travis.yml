@@ -20,7 +20,7 @@ before_install:
 beford_deploy:
   - zip -r changyong-springboot-webservice *
   - mkdir -p deploy
-  - mv changyong-springboot-webservice.zip delpoy/changyong-springboot-webservice.zip
+  - mv Springboot_bookstore.zip delpoy/Springboot_bookstore.zip
 
 delpoy:
   - provider: s3
