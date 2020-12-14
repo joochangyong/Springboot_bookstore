@@ -4,32 +4,33 @@ jdk:
 
 branches:
   only:
-   - master
+    - master
 
 #Travis CI 서버의 Home
 cache:
-  directores:
-    - '$HOME/.m2/repostiory'
-    - '$HOME/.gralde'
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.gradle'
 
 script: "./gradlew clean build"
 
+# 권한 부여
 before_install:
   - chmod +x gradlew
-
+  
 beford_deploy:
   - zip -r Springboot_bookstore *
   - mkdir -p deploy
-  - mv Springboot_bookstore.zip delpoy/Springboot_bookstore.zip
+  - mv Springboot_bookstore.zip deploy/Springboot_bookstore.zip
 
-delpoy:
+deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
     secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
     bucket: changyong-springboot-build #S3 버킷
     region: ap-northeast-2
     skip_cleanup: true
-    acl: private # zip 파일 접근을 private으로
+    acl: private # zip 파일 접근을 private로 설정
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
 
