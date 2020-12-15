@@ -33,6 +33,9 @@ deploy:
     acl: private # zip 파일 접근을 private로 설정
     local_dir: deploy # before_deploy에서 생성한 디렉토리
     wait-until-deployed: true
+    on:
+      repo: joochangyong/Springboot_bookstore
+      branch: master
 
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
@@ -44,6 +47,9 @@ deploy:
     deployment_group: changyong-springboot-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
     region: ap-northeast-2
     wait-until-deployed: true
+    on:
+      repo: joochangyong/Springboot_bookstore
+      branch: master
 
 # CI 실행 완료시 메일로 알람
 notification:
