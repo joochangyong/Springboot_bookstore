@@ -18,7 +18,7 @@ script: "./gradlew clean build"
 before_install:
   - chmod +x gradlew
   
-beford_deploy:
+before_deploy:
   - zip -r Springboot_bookstore *
   - mkdir -p deploy
   - mv Springboot_bookstore.zip deploy/Springboot_bookstore.zip
