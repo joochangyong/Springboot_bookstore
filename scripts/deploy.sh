@@ -10,7 +10,7 @@ echo "> 현재 구동 중인 애플리케이션 pid 확인"
 
 # 현재 수행 중인 스프링 부트 애플리케이션의 프로세스 ID찾기
 # 실행중이면 종료
-CURRENT_PID=$(pgrep -fl Springboot_bookstore | grep jar | awk '{print $1}')
+CURRENT_PID=$(pgrep -fl java.*.jar)
 
 echo "현재 구동 중인 애플리케이션 pid: $CURRENT_PID"
 
