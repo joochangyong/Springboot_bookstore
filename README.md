@@ -14,4 +14,4 @@
 * build.gradle
 
 ## 배포
-* <bookstore.joochangyong.xyz>
+* http://bookstore.joochangyong.xyz/
