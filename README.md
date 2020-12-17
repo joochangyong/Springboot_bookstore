@@ -12,3 +12,6 @@
 * AWS RDS
 * mustache
 * build.gradle
+
+## 배포
+* bookstore.joochangyong.xyz
