@@ -12,3 +12,12 @@
 * AWS RDS
 * mustache
 * build.gradle
+
+## 배포
+http://bookstore.joochangyong.xyz/
+* AWS EC2(Linux)
+* AWS S3
+* AWS CodeDeploy
+* Nginx
+* travis-ci
+* AWS Route53
