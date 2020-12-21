@@ -75,10 +75,6 @@ public class UsersApiController {
         return ResponseEntity.ok().body(result);
     }
 
-    public UsersInfoDto signIn(@RequestBody UsersSignInDto usersSignInDto) {
-        return usersService.usersSign(usersSignInDto);
-    }
-
     @ApiOperation(value = "회원정보 수정")
     @PostMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") String id, @RequestBody UsersUpdateDto usersUpdateDto) {
