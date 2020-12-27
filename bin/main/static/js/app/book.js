@@ -38,7 +38,7 @@ var main = {
             data: JSON.stringify(data)
         }).done(function() {
             alert('도서가 등록되었습니다.');
-            window.location.href = '/books/bookList';
+            window.location.href = '/';
         }).fail(function() {
             if(data.isbm == "") {
                 alert('입력하시오');
