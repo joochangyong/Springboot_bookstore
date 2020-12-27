@@ -29,7 +29,6 @@ public class UsersService {
     @Transactional
     public String save(UsersSignUpDto requestDto) {
         requestDto.setPw(passwordEncoder.encode(requestDto.getPw()));
-        System.out.println(requestDto.getPw());
         return usersRepository.save(requestDto.toEntity()).getId();
     }
 
