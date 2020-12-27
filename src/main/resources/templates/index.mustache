@@ -11,10 +11,9 @@
         {{#bookList}}
         <tr style="border-bottom: 1px solid #444444">
             <td>
-                <p>책제목 : <a href="/books/bookInfo/{{isbn}}" class="text-red">{{bookName}}</a> | 장르 : {{bookGen}}</p>
-                <p>저자 : {{bookAut}} | 출판사 : {{bookHouse}} | 출판일 : {{bookDate}}</p>
-                <p>가격 : {{bookPri}}</p>
-                <p class="border-bottom: 1px solid #444444">재고량 : {{bookSto}}</p>
+                <p><b>책제목</b> : <a href="/books/bookInfo/{{isbn}}" class="text-red">{{bookName}}</a> | <b>장르</b> : {{bookGen}}</p>
+                <p><b>저자</b> : {{bookAut}} | <b>출판사</b> : {{bookHouse}}</p>
+                <p><b>가격</b> : {{bookPri}} | <b>재고량</b> : {{bookSto}}</p>
             </td>
         </tr>
         {{/bookList}}

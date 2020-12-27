@@ -2,8 +2,8 @@
 {{>layout/nav}}
 <div class="container">
 <a href="/" role="button" class="btn btn-outline-dark float-right">책 목록</a>
-<h1 class="d-flex">장바구니</h1>
-<div class="col-md-8 ">
+<h1 class="d-flex justify-content-center">장바구니</h1>
+<div class="col-md-12 d-flex justify-content-center">
 <table class="list" >
     <tbody>
     {{^basketInfo}}
@@ -12,8 +12,7 @@
     {{#basketInfo}}
         <tr style="border-bottom: 1px solid #444444">
             <td>
-                <p>책제목 : {{books.bookName}}</p>
-                <p>가격 : {{books.bookPri}} | 수량 : {{basAmount}} | 총합 : 
+                <p><b>책제목</b> : {{books.bookName}} | <b>수량</b> : {{basAmount}} | <b>총합</b> : 
                 <script>
                     var count = {{books.bookPri}}*{{basAmount}};
                     document.write(count.toString());

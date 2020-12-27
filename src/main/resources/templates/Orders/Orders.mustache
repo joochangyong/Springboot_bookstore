@@ -11,13 +11,10 @@
             {{#bookInfo}}
             <input type="text" class="form-control" id="isbn" value="{{isbn}}" hidden/>
                 <div class="row">
-                    <p>책제목 : {{bookName}} | 가격 : {{bookPri}} | 수량 : {{#orderAmount}}{{orderAmount}}{{/orderAmount}}</p>
-                    <div class="ml-1 row">
-                        <p>총합 : </p>
-                        <script>
-                            document.write("<p id='orderSum'>"+{{bookPri}}*{{orderAmount}}+"</p>");
-                        </script>
-                    </div>
+                    <p><b>책제목</b> : {{bookName}} | <b>수량</b> : {{#orderAmount}}{{orderAmount}}{{/orderAmount}} | <b>총합</b> : </p>
+                    <script>
+                        document.write("<p id='orderSum'>" + {{bookPri}}*{{orderAmount}} + "</p>");
+                    </script>
                 </div>
             {{/bookInfo}}
             </td>
