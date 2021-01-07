@@ -46,8 +46,6 @@ public class UsersController {
         model.addAttribute("addrInfo", addrService.findAddr(usersInfo));
         model.addAttribute("cardInfo", cardService.findCard(usersInfo));
         model.addAttribute("orderInfo", ordersService.ordersInfo());
-        System.out.println("--------------------------");
-        System.out.println(ordersService.ordersInfo());
         return "Users/mypage";
     }
 

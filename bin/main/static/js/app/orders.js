@@ -6,9 +6,9 @@ var orders = {
             _this.basket();
         });
 
-        $('#btn-basketInfoDelete').on('click', function () {
-            _this.basketInfoDelete();
-        });
+        // $('#btn-basketInfoDelete').on('click', function () {
+        //     _this.basketInfoDelete();
+        // });
         
         $('#btn-orders').on('click', function () {
             _this.orders();
@@ -40,20 +40,20 @@ var orders = {
         });
     },
 
-    basketInfoDelete : function () {
-        var book_isbn = $('#book_isbn').val();
+    // basketInfoDelete : function () {
+    //     var book_isbn = $('#book_isbn').val();
 
-        $.ajax({
-            type: 'DELETE',
-            url: '/basket/delete/'+ book_isbn,
-            dataType: 'json',
-            contentType:'application/json; charset=utf-8'
-        }).done(function() {
-            window.location.href = '/users/basket';
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
-    },
+    //     $.ajax({
+    //         type: 'DELETE',
+    //         url: '/basket/delete/'+ book_isbn,
+    //         dataType: 'json',
+    //         contentType:'application/json; charset=utf-8'
+    //     }).done(function() {
+    //         window.location.href = '/users/basket';
+    //     }).fail(function (error) {
+    //         alert(JSON.stringify(error));
+    //     });
+    // },
 
     orders: function () {
         var data = {

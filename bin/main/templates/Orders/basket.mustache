@@ -1,5 +1,6 @@
 {{>layout/header}}
 {{>layout/nav}}
+<script src="/js/app/basketCheck.js"></script>
 <div class="container">
 <a href="/" role="button" class="btn btn-outline-dark float-right">책 목록</a>
 <h1 class="d-flex justify-content-center">장바구니</h1>
@@ -10,14 +11,15 @@
     <p class="d-flex">장바구니가 비었습니다</p>
     {{/basketInfo}}
     {{#basketInfo}}
-        <tr style="border-bottom: 1px solid #444444">
+        <tr class="js-isbnCheck" style="border-bottom: 1px solid #444444" name = "basNum" value = "{{basket.basNum}}">
             <td>
-                <p><b>책제목</b> : {{books.bookName}} | <b>수량</b> : {{basAmount}} | <b>총합</b> : 
+                <p><input type="checkbox" onclick="value_check()" name = "isbn" value="{{books.isbn}}" unchecked>
+                <b>책제목</b> : {{books.bookName}} | <b>수량</b> : {{basAmount}} | <b>총합</b> : 
                 <script>
                     var count = {{books.bookPri}}*{{basAmount}};
                     document.write(count.toString());
                 </script>
-                <button type="button" class="btn btn-outline-dark float-right ml-5" id="btn-basketInfoDelete">삭제</button>
+                <button type="button" class="btn btn-outline-dark float-right ml-5" id="btn-basketInfoDelete" onclick="ckeckDelete()">삭제</button>
                 </p>
             </td>
         </tr>

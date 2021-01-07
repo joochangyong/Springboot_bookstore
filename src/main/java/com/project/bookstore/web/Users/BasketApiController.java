@@ -43,8 +43,8 @@ public class BasketApiController {
     }
 
     // @ApiOperation(value = "장바구니")
-    // @DeleteMapping("/basket/delete/{book_isbn}")
-    // public String delete(@PathVariable("book_isbn") String book_isbn) {
+    // @DeleteMapping("/basket/delete")
+    // public String delete(@RequestParam("book_isbn") String book_isbn) {
     //     basketService.delete(book_isbn);
     //     return book_isbn;
     // }
