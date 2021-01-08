@@ -40,7 +40,11 @@ var main = {
             window.location.href = '/';
         }).fail(function() {
             if(data.id == "") {
-                alert('입력하시오');
+                alert('아이디를 입력하시오');
+            } else if (data.pw == "") {
+                alert('비밀번호를 입력하시오');
+            } else if (data.name == "") {
+                alert('이름을 입력하시오');
             } else {
                 alert('사용중인 아이디입니다.');
             }

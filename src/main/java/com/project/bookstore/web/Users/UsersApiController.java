@@ -30,7 +30,7 @@ public class UsersApiController {
         UsersInfoDto idCheck = new UsersInfoDto(usersService.findById(requestDto.getId()));
         if(idCheck.getId() == null){
             try {
-                if(requestDto.getId() != "") {
+                if(requestDto.getId() != "" && requestDto.getPw() != "" && requestDto.getName() != "") {
                     result = new ApiResponse(true, "성공", usersService.save(requestDto));
                     return ResponseEntity.ok().body(result);
                 } else {
