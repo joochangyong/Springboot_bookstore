@@ -19,13 +19,13 @@
                     var count = {{books.bookPri}}*{{basAmount}};
                     document.write(count.toString());
                 </script>
-                <button type="button" class="btn btn-outline-dark float-right ml-5" id="btn-basketInfoDelete" onclick="ckeckDelete()">삭제</button>
                 </p>
             </td>
         </tr>
     {{/basketInfo}}
     </tbody>
 </table>
+    <button type="button" onclick="checkDelete()" name = "isbn" class="btn btn-outline-dark float-right ml-5" id="btn-basketInfoDelete" >삭제</button>
 </div>
 </div>
 {{>layout/footer}}

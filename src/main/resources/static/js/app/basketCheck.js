@@ -21,31 +21,6 @@ function checkDelete(event) {
     console.log("event");
 }
 
-// var basketCheck = {
-//     init: function () {
-//         var _this = this;
-
-//         $('#btn-basketInfoDelete').on('click', function () {
-//             _this.basketInfoDelete();
-//         });
-//     },
-
-//     basketInfoDelete() {
-//         var book_isbn = $('#book_isbn').val();
-
-//         $.ajax({
-//             type: 'DELETE',
-//             url: '/basket/delete/' + book_isbn,
-//             dataType: 'json',
-//             contentType: 'application/json; charset=utf-8'
-//         }).done(function () {
-//             window.location.href = '/users/basket';
-//         }).fail(function (error) {
-//             alert(JSON.stringify(error));
-//         });
-//     }
-// }
-
 function init() {
     // value_check();
     const value = value_check();
