@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.project.bookstore.domain.Basket.BasketRepository;
+import com.project.bookstore.domain.BasketInfo.BasketInfo;
 import com.project.bookstore.domain.BasketInfo.BasketInfoRepository;
 import com.project.bookstore.domain.BasketInfo.BasketMultiId;
 import com.project.bookstore.domain.Books.BooksRepository;
@@ -45,7 +46,7 @@ public class BasketService {
     // 장바구니 확인
     @Transactional
     public Boolean basketFind() {
-        if (basketRepository.findByUsers_Id(usersInfo.getUserId()) == null) {
+        if (basketRepository.findByUsers_IdOrderByBasNumDesc(usersInfo.getUserId()) == null) {
             return false;
         } else {
             return true;
@@ -64,25 +65,35 @@ public class BasketService {
     public Long basketInfoInsert(String isbn, BasketInsertDto basketInsertDto) {
         BasketMultiId basketMultiId = new BasketMultiId();
         basketMultiId.setIsbn(isbn);
-        basketMultiId.setBasNum(basketRepository.findByUsers_Id(usersInfo.getUserId()).getBasNum());
+        basketMultiId.setBasNum(basketRepository.findByUsers_IdOrderByBasNumDesc(usersInfo.getUserId()).getBasNum());
         basketInsertDto.setBasketMultiId(basketMultiId);
         basketInsertDto.setBooks(booksRepository.findById(isbn).get());
-        basketInsertDto.setBasket(basketRepository.findByUsers_Id(usersInfo.getUserId()));
+        basketInsertDto.setBasket(basketRepository.findByUsers_IdOrderByBasNumDesc(usersInfo.getUserId()));
         return basketInfoRepository.save(basketInsertDto.toEntity()).getBasketMultiId().getBasNum();
     }
 
     //장바구니 정보
     @Transactional
     public List<BasketInfoDto> basketInfo() {
-        return basketInfoRepository.findByBasket(basketRepository.findByUsers_Id(usersInfo.getUserId())).stream()
+        return basketInfoRepository.findByBasket(basketRepository.findByUsers_IdOrderByBasNumDesc(usersInfo.getUserId())).stream()
                 .map(BasketInfoDto::new)
                 .collect(Collectors.toList());
     }
 
-    // //장바구니 삭제
-    // @Transactional
-    // public void delete (String book_isbn) {
-    //     BasketInfo basketInfo = basketInfoRepository.findByBasketInfo(book_isbn).orElseThrow(() -> new IllegalArgumentException("삭제안됨"));
-    //     basketInfoRepository.delete(basketInfo);
-    // }
+    //장바구니 번호 가져오기
+    @Transactional
+    public Long basNum() {
+        return basketRepository.findByUsers_IdOrderByBasNumDesc(usersInfo.getUserId()).getBasNum();
+    }
+
+    // 장바구니 삭제
+    @Transactional
+    public void basketBookDelete(Long basNum, String isbn) {
+        BasketMultiId basketmultiId = new BasketMultiId();
+        basketmultiId.setBasNum(basNum);
+        basketmultiId.setIsbn(isbn);
+        BasketInfo basketinfo = basketInfoRepository.findByBasketMultiId(basketmultiId);
+
+        basketInfoRepository.delete(basketinfo);
+    }
 }

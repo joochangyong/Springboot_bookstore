@@ -25,12 +25,12 @@ public class UsersApiController {
 
     @ApiOperation(value = "회원가입")
     @PostMapping("/signUp")
-    public ResponseEntity<?> save (@RequestBody UsersSignUpDto requestDto) {
+    public ResponseEntity<?> save(@RequestBody UsersSignUpDto requestDto) {
         ApiResponse result = null;
         UsersInfoDto idCheck = new UsersInfoDto(usersService.findById(requestDto.getId()));
-        if(idCheck.getId() == null){
+        if (idCheck.getId() == null) {
             try {
-                if(requestDto.getId() != "" && requestDto.getPw() != "" && requestDto.getName() != "") {
+                if (requestDto.getId() != "" && requestDto.getPw() != "" && requestDto.getName() != "") {
                     result = new ApiResponse(true, "성공", usersService.save(requestDto));
                     return ResponseEntity.ok().body(result);
                 } else {
@@ -49,10 +49,10 @@ public class UsersApiController {
 
     @ApiOperation(value = "로그인")
     @PostMapping("/signIn")
-    public ResponseEntity<?> signin(@RequestBody UsersSignInDto usersSignInDto){
+    public ResponseEntity<?> signin(@RequestBody UsersSignInDto usersSignInDto) {
         ApiResponse result = null;
-        try{
-            if(usersService.usersSign(usersSignInDto) != null) {
+        try {
+            if (usersService.usersSign(usersSignInDto) != null) {
                 result = new ApiResponse(true, "성공", usersService.usersSign(usersSignInDto));
                 usersInfo.setUserId(usersSignInDto.getId());
                 return ResponseEntity.ok().body(result);
@@ -66,6 +66,7 @@ public class UsersApiController {
             return ResponseEntity.badRequest().body(result);
         }
     }
+
     @ApiOperation(value = "로그아웃")
     @PostMapping("/logout")
     public ResponseEntity<?> logout() {
@@ -87,5 +88,11 @@ public class UsersApiController {
             result = new ApiResponse(false, e.getMessage(), null);
             return ResponseEntity.badRequest().body(result);
         }
+    }
+
+    @DeleteMapping("/basketDelete/{checkValue}")
+    public String delete(@PathVariable("checkValue") String isbn) {
+        // basketService.delete(isbn);
+        return isbn;
     }
 }

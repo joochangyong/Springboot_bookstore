@@ -1,6 +1,5 @@
 package com.project.bookstore.web.Users;
 
-import com.project.bookstore.service.basket.BasketService;
 import com.project.bookstore.service.orders.OrdersService;
 import com.project.bookstore.service.users.AddrService;
 import com.project.bookstore.service.users.CardService;
@@ -18,7 +17,6 @@ public class UsersController {
     private final AddrService addrService;
     private final CardService cardService;
     private final UsersService usersService;
-    private final BasketService basketService;
     private final OrdersService ordersService;
     private final UsersInfo usersInfo;
 
@@ -47,13 +45,5 @@ public class UsersController {
         model.addAttribute("cardInfo", cardService.findCard(usersInfo));
         model.addAttribute("orderInfo", ordersService.ordersInfo());
         return "Users/mypage";
-    }
-
-    // 장바구니 정보
-    @GetMapping("/basket")
-    public String basket(Model model) {
-        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
-        model.addAttribute("basketInfo", basketService.basketInfo());
-        return "Orders/basket";
     }
 }

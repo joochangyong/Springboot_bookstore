@@ -1,5 +1,5 @@
 var main = {
-    init : function () {
+    init: function () {
         var _this = this;
 
         $('#btn-booksSave').on('click', function () {
@@ -15,7 +15,7 @@ var main = {
         });
     },
 
-    bookSave : function () {
+    bookSave: function () {
         var data = {
             isbn: $('#isbn').val(),
             bookName: $('#bookName').val(),
@@ -34,13 +34,13 @@ var main = {
             type: 'POST',
             url: '/api/books/save',
             dataType: 'json',
-            contentType:'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
-        }).done(function() {
+        }).done(function () {
             alert('도서가 등록되었습니다.');
             window.location.href = '/';
-        }).fail(function() {
-            if(data.isbm == "") {
+        }).fail(function () {
+            if (data.isbm == "") {
                 alert('입력하시오');
             } else {
                 alert('등록된 도서입니다.');
@@ -48,7 +48,7 @@ var main = {
         });
     },
 
-    bookUpdate : function () {
+    bookUpdate: function () {
         var data = {
             bookPri: $('#bookPri').val(),
             bookDet: $('#bookDet').val()
@@ -60,25 +60,25 @@ var main = {
             type: 'POST',
             url: '/api/books/update/' + isbn,
             dataType: 'json',
-            contentType:'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
-        }).done(function() {
+        }).done(function () {
             alert('도서가 수정되었습니다.');
             window.location.href = '/books/bookInfo/' + isbn;
         }).fail(function (error) {
-           alert(JSON.stringify(error));
-       });
+            alert(JSON.stringify(error));
+        });
     },
 
-    delete : function () {
+    delete: function () {
         var isbn = $('#isbn').val();
 
         $.ajax({
             type: 'DELETE',
-            url: '/api/books/delete/'+ isbn,
+            url: '/api/books/delete/' + isbn,
             dataType: 'json',
-            contentType:'application/json; charset=utf-8'
-        }).done(function() {
+            contentType: 'application/json; charset=utf-8'
+        }).done(function () {
             alert('도서가 삭제되었습니다.');
             window.location.href = '/books/bookList';
         }).fail(function (error) {

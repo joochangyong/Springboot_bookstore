@@ -1,6 +1,6 @@
 {{>layout/header}}
 {{>layout/nav}}
-<script src="/js/app/basketCheck.js"></script>
+<script src="/js/app/basket.js"></script>
 <div class="container">
 <a href="/" role="button" class="btn btn-outline-dark float-right">책 목록</a>
 <h1 class="d-flex justify-content-center">장바구니</h1>
@@ -11,10 +11,10 @@
     <p class="d-flex">장바구니가 비었습니다</p>
     {{/basketInfo}}
     {{#basketInfo}}
-        <tr class="js-isbnCheck" style="border-bottom: 1px solid #444444" name = "basNum" value = "{{basket.basNum}}">
+        <tr style="border-bottom: 1px solid #444444" name = "basNum" value = "{{basket.basNum}}">
             <td>
-                <p><input type="checkbox" onclick="value_check()" name = "isbn" value="{{books.isbn}}" unchecked>
-                <b>책제목</b> : {{books.bookName}} | <b>수량</b> : {{basAmount}} | <b>총합</b> : 
+                <p><input type="checkbox" name = "isbn" value="{{books.isbn}}" unchecked>
+                <b>책제목</b> : <a href="/books/bookInfo/{{books.isbn}}" class="text-red">{{books.bookName}}</a> | <b>수량</b> : {{basAmount}} | <b id = "price">가격</b> : 
                 <script>
                     var count = {{books.bookPri}}*{{basAmount}};
                     document.write(count.toString());
@@ -25,7 +25,7 @@
     {{/basketInfo}}
     </tbody>
 </table>
-    <button type="button" onclick="checkDelete()" name = "isbn" class="btn btn-outline-dark float-right ml-5" id="btn-basketInfoDelete" >삭제</button>
 </div>
+<button type="button" class="btn btn-outline-dark float-right mr-5" onclick="basketBookDelete()">삭제</button>
 </div>
 {{>layout/footer}}

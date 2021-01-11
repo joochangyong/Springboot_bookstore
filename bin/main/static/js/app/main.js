@@ -1,6 +1,5 @@
 var main = {
-    init : function (a) {
-        console.log(a);
+    init: function () {
         var _this = this;
         $('#btn-save').on('click', function () {
             _this.save();
@@ -10,16 +9,16 @@ var main = {
             _this.login();
         });
 
-        $('#btn-update').on('click', function(){
+        $('#btn-update').on('click', function () {
             _this.update();
         });
 
-        $('#btn-logout').on('click', function(){
+        $('#btn-logout').on('click', function () {
             _this.logout();
         });
     },
     // ///////////////////////////////////////회원가입///////////////////////////////////////
-    save : function () {
+    save: function () {
         var data = {
             id: $('#id').val(),
             pw: $('#pw').val(),
@@ -33,13 +32,13 @@ var main = {
             type: 'POST',
             url: '/api/users/signUp',
             dataType: 'json',
-            contentType:'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
-        }).done(function() {
+        }).done(function () {
             alert('회원가입 되었습니다.');
             window.location.href = '/';
-        }).fail(function() {
-            if(data.id == "") {
+        }).fail(function () {
+            if (data.id == "") {
                 alert('아이디를 입력하시오');
             } else if (data.pw == "") {
                 alert('비밀번호를 입력하시오');
@@ -52,7 +51,7 @@ var main = {
     },
 
     // ///////////////////////////////////////로그인///////////////////////////////////////
-    login : function () {
+    login: function () {
         var data = {
             id: $('#id').val(),
             pw: $('#pw').val()
@@ -62,9 +61,9 @@ var main = {
             type: 'POST',
             url: '/api/users/signIn',
             dataType: 'text',
-            contentType:'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data)
-        }).done(function() {
+        }).done(function () {
             window.location.href = '/';
         }).fail(function (error) {
             alert(JSON.stringify(error));
@@ -72,7 +71,7 @@ var main = {
     },
 
     // ///////////////////////////////////////정보 수정///////////////////////////////////////
-    update : function () {
+    update: function () {
         var data = {
 
             pw: $('#pw').val(),
@@ -86,22 +85,22 @@ var main = {
             type: 'POST',
             url: '/api/users/update/' + id,
             dataType: 'json',
-            contentType:'application/json; charset=utf-8',
+            contentType: 'application/json; charset=utf-8',
             data: JSON.stringify(data),
-        }).done(function() {
+        }).done(function () {
             alert('정보가 수정 되었습니다.');
             window.location.href = '/users/mypage/';
-        }).fail(function() {
+        }).fail(function () {
             alert(JSON.stringify(error));
         });
     },
 
     // ///////////////////////////////////////로그아웃///////////////////////////////////////
-    logout : function(){
+    logout: function () {
         $.ajax({
             type: 'POST',
             url: '/api/users/logout',
-        }).done(function(){
+        }).done(function () {
             alert('로그아웃 되었습니다.');
             window.location.href = '/';
         })
