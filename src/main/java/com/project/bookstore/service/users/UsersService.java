@@ -3,6 +3,7 @@ package com.project.bookstore.service.users;
 import com.project.bookstore.domain.Users.Users;
 import com.project.bookstore.domain.Users.UsersMapperRepository;
 import com.project.bookstore.domain.Users.UsersRepository;
+import com.project.bookstore.session.UsersInfo;
 import com.project.bookstore.web.Users.dto.Users.UsersInfoDto;
 import com.project.bookstore.web.Users.dto.Users.UsersSignInDto;
 import com.project.bookstore.web.Users.dto.Users.UsersSignUpDto;
@@ -40,10 +41,15 @@ public class UsersService {
     
     //정보불러오기
     @Transactional
-    public List<UsersInfoDto> findAllUsers(String id) {
-        return usersRepository.findAllUsers(id).stream()
+    public List<UsersInfoDto> findAllUsers(UsersInfo usersInfo) {
+        return usersRepository.findAllUsers(usersInfo.getUserId()).stream()
                 .map(UsersInfoDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public Users findByUsers(UsersInfo usersInfo) {
+        return usersRepository.findById(usersInfo.getUserId()).get();
     }
 
     //회원정보수정

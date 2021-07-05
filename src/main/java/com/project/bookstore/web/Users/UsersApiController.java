@@ -81,7 +81,7 @@ public class UsersApiController {
 
     @ApiOperation(value = "회원정보 수정")
     @PostMapping("/update/{id}")
-    public ResponseEntity update(@PathVariable("id") String id, @RequestBody UsersUpdateDto usersUpdateDto) {
+    public ResponseEntity<?> update(@PathVariable("id") String id, @RequestBody UsersUpdateDto usersUpdateDto) {
         ApiResponse result = null;
         try {
             result = new ApiResponse(true, "성공", usersService.Update(id, usersUpdateDto));

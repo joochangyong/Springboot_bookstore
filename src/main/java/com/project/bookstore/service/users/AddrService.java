@@ -27,8 +27,8 @@ public class AddrService {
     
     //정보 불러오기
     @Transactional
-    public List<AddrInfoDto> findByUsers_Id(String id) {
-        return addrRepository.findByUsers_Id(id).stream()
+    public List<AddrInfoDto> findAddr (UsersInfo usersInfo) {
+        return addrRepository.findByUsers_Id(usersInfo.getUserId()).stream()
                 .map(AddrInfoDto::new)
                 .collect(Collectors.toList());
     }
@@ -44,5 +44,10 @@ public class AddrService {
     public void delete (Long addrCode) {
         Addr addr = addrRepository.findById(addrCode).orElseThrow(() -> new IllegalArgumentException("삭제안됨"));
         addrRepository.delete(addr);
+    }
+
+    @Transactional
+    public Addr findAddrCode(Long addrCode) {
+        return addrRepository.findById(addrCode).get();
     }
 }

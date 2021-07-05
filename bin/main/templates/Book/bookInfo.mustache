@@ -1,43 +1,80 @@
 {{>layout/header}}
 {{>layout/nav}}
-<h1>책 상세 정보</h1>
-<a href="/books/bookList" role="button" class="btn btn-outline-dark float-right">목록</a>
+<div class="container">
+    <a href="/books/bookList" role="button" class="btn btn-outline-dark float-right">목록</a>
+    {{#master}}
+    <button type="button" class="btn btn-outline-dark float-right" id="btn-booksDelete">삭제</button>
+    {{/master}}
+        <h1 class="d-flex justify-content-center">책 상세 정보</h1>
+        <div class="col-md-12 d-flex justify-content-center">
+        <table class="list">
+            <tbody>
+            {{#bookInfo}}
+                <input type="text" class="form-control" id="isbn" value="{{isbn}}" hidden>
+                <tr>
+                    <td class="goodsTxtInfo">
+                        <p>책제목 : {{bookName}} | 장르 : {{bookGen}}</p>
+                        <p>저자 : {{bookAut}} | 출판사 : {{bookHouse}} | 출판일 : {{bookDate}}</p>
+                        <p>가격 : {{bookPri}} | 재고량 : {{bookSto}}</p>
+                        <p>상세정보 : {{bookDet}}</p>
+                        <p>수량 : <input type="number" id="amount" value="1" min = "1" max="{{bookSto}}">권</td></p>
+                    </td>
+                </tr>
+            </tbody>
+            {{/bookInfo}}
+            </table>
+</div>
+<div class="col-md-7">
+    <!-- 책 정보 수정 modal -->
+    {{#master}}
+    <button type="button" class="btn btn-outline-dark float-right" data-toggle="modal" data-target="#bookUpdateModal">수정 </button>
+    {{/master}}
+    <!-- Modal -->
+    <div class="modal fade" id="bookUpdateModal" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bookModalLabel">도서정보 수정</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{#bookInfo}}
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="id" value="" hidden>
+                    <div class="form-group">
+                        <label for="bookPri">가격</label>
+                        <input type="text" class="form-control" id="bookPri" value="{{bookPri}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="bookDet">상세정보</label>
+                        <textarea type="text" class="form-control" id="bookDet">{{bookDet}}</textarea>
+                    </div>
+                </div>
+                {{/bookInfo}}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-dark" id="btn-booksUpdate">수정 완료</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{^master}}
+        {{^usersInfo}}
+        <a href="/users/signIn" role="button" class="btn btn-outline-dark float-right">주문하기</a>
+        <a href="/users/signIn" role="button" class="btn btn-outline-dark float-right">장바구니 담기</a>
+        {{/usersInfo}}
+    {{/master}}
+    {{^master}}
+    {{#usersInfo}}
+        <button type="button" class="btn btn-outline-dark float-right" id="btn-orders">주문하기</button>
+        <button type="button" class="btn btn-outline-dark float-right" id="btn-basket">장바구니 담기</button>
+    {{/usersInfo}}
+    {{/master}}
+</div>
 <script type="text/javascript">
     function goBack(){
         window.history.back();
     }
 </script>
-<table class="table table-horizontal table-bordered">
-    <thead class="thead-strong">
-    <tr>
-        <th>책제목</th>
-        <th>저자</th>
-        <th>출간일</th>
-        <th>출판사</th>
-        <th>가격</th>
-        <th>장르</th>
-        <th>상세정보</th>
-        <th>재고량</th>
-        <th>수량</th>
-    </tr>
-    </thead>
-    <tbody id="tbody">
-    {{#bookInfo}}
-    <tr>
-        <td>{{bookName}}</td>
-        <td>{{bookAut}}</td>
-        <td>{{bookDate}}</td>
-        <td>{{bookHouse}}</td>
-        <td>{{bookPri}}</td>
-        <td>{{bookGen}}</td>
-        <td>{{bookDet}}</td>
-        <td>{{bookSto}}</td>
-        <td><input type="number" id="basAmount" value="1" min = "1" max="{{bookSto}}">권</td>
-    </tr>
-    <input type="text" class="form-control" id="isbn" value="{{isbn}}" hidden>
-    {{/bookInfo}}
-    </tbody>
-</table>
-<a href="/books/bookUpdate/{{isbn}}" role="button" class="btn btn-outline-dark float-right">정보 수정</a>
-<button type="button" class="btn btn-outline-dark float-right" id="btn-basket">장바구니 담기</button>
-{{>layout/bookFooter}}
+{{>layout/footer}}

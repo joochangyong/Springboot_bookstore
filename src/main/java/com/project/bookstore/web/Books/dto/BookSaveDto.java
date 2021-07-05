@@ -18,10 +18,10 @@ public class BookSaveDto {
     private Long bookPri;
     private String bookGen;
     private String bookDet;
-    private int bookSto;
+    private Long bookSto;
 
     @Builder
-    public BookSaveDto(String isbn, String bookName, String bookAut,  String bookHouse, Date bookDate, Long bookPri, String bookGen, String bookDet, int bookSto) {
+    public BookSaveDto(String isbn, String bookName, String bookAut,  String bookHouse, Date bookDate, Long bookPri, String bookGen, String bookDet, Long bookSto) {
         this.isbn = isbn;
         this.bookName = bookName;
         this.bookAut = bookAut;

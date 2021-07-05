@@ -37,7 +37,7 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-            alert('도서가 등록되었습니다..');
+            alert('도서가 등록되었습니다.');
             window.location.href = '/books/bookList';
         }).fail(function() {
             if(data.isbm == "") {
@@ -50,8 +50,6 @@ var main = {
 
     bookUpdate : function () {
         var data = {
-            bookTrans: $('#bookTrans').val(),
-            bookCov: $('#bookCov').val(),
             bookPri: $('#bookPri').val(),
             bookDet: $('#bookDet').val()
         };
@@ -65,7 +63,7 @@ var main = {
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
         }).done(function() {
-            alert('도서가 수정되었습니다..');
+            alert('도서가 수정되었습니다.');
             window.location.href = '/books/bookInfo/' + isbn;
         }).fail(function (error) {
            alert(JSON.stringify(error));

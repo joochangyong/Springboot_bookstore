@@ -27,7 +27,7 @@ public class Books {
     private Long bookPri; //가격
     private String bookGen; //장르
     private String bookDet; //상세정보
-    private int bookSto;
+    private Long bookSto;
 
     @OneToMany(mappedBy = "books")
     private List<BasketInfo> basketInfo;
@@ -36,7 +36,7 @@ public class Books {
     private List<OrdersInfo> ordersInfo;
 
     @Builder
-    public Books(String isbn, String bookName, String bookAut, String bookHouse, Date bookDate, Long bookPri, String bookGen, String bookDet, int bookSto,
+    public Books(String isbn, String bookName, String bookAut, String bookHouse, Date bookDate, Long bookPri, String bookGen, String bookDet, Long bookSto,
                  List<BasketInfo> basketInfo, List<OrdersInfo> ordersInfo) {
         this.isbn = isbn;
         this.bookName = bookName;
@@ -55,4 +55,8 @@ public class Books {
         this.bookPri = bookPri;
         this.bookDet = bookDet;
     }
+
+	public void updateSto(Long bookSto) {
+        this.bookSto = bookSto;
+	}
 }

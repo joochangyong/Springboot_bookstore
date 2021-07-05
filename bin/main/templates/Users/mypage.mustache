@@ -4,14 +4,14 @@
 <div class="container">
     <div class="col-md-12">
         <div class="d-flex">
-            <div class="col-md-4">
-                {{#userInfo}}
+            <div class="col-md-5">
+                {{#usersInfo}}
                     <h1>{{name}}님 마이페이지</h1>
                     <p>이름 : {{name}}</p>
                     <p>성별 : {{sex}}</p>
                     <p>전화번호 : {{num}}</p>
                     <p>메일주소 : {{mail}}</p>
-                {{/userInfo}}
+                {{/usersInfo}}
                 <!-- 회원정보수정 modal -->
                 <button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#usersUpdateModal"> 회원정보 수정 </button>
                 <!-- Modal -->
@@ -26,7 +26,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                {{#userInfo}}
+                                {{#usersInfo}}
                                     <input type="text" class="form-control" id="id" value="{{id}}" hidden>
                                     <div class="form-group">
                                         <label for="pw">비밀번호</label>
@@ -40,7 +40,7 @@
                                         <label for="mail"> 메일 </label>
                                         <input type="email" class="form-control" id="mail" value="{{mail}}">
                                     </div>
-                                {{/userInfo}}
+                                {{/usersInfo}}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -50,18 +50,64 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <table class="table mt-">
-                    <thead class="thead-strong thead-dark">
+            {{^master}}
+            <div class="col-md-7">
+                <table class="table">
+                    <thead>
                     <tr>
-                        <th>배송지명</th>
-                        <th>수취인</th>
-                        <th>우편번호</th>
-                        <th>기본주소</th>
-                        <th>상세주소</th>
-                        <th></th>
+                        <th scope="col">배송지명</th>
+                        <th scope="col">수취인</th>
+                        <th scope="col">우편번호</th>
+                        <th scope="col">기본주소</th>
+                        <th scope="col">상세주소</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
+                    <!-- 배송지 등록 modal -->
+                    <button type="button" class="btn btn-outline-dark float-right" data-toggle="modal" data-target="#addrSaveModal"> 배송지 등록 </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="addrSaveModal" tabindex="-1" role="dialog" aria-labelledby="addrModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="addrModalLabel"> 배송지 등록 </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {{#userInfo}}
+                                        <input type="text" class="form-control" id="id" value="{{id}}" hidden>
+                                    {{/userInfo}}
+                                    <div class="form-group">
+                                        <label for="addrNic">배송지 이름</label>
+                                        <input type="text" class="form-control" id="addrNic" placeholder="배송지 이름을 입력하세요">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addrName">수령인</label>
+                                        <input type="text" class="form-control" id="addrName" placeholder="수령인을 입력하세요">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addrZip">우편번호</label>
+                                        <input type="text" class="form-control" id="addrZip" placeholder="우편번호를 입력하세요">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addrBas">기본주소</label>
+                                        <input type="text" class="form-control" id="addrBas" placeholder="기본주소를 입력하세요">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addrDet">상세주소</label>
+                                        <input type="text" class="form-control" id="addrDet" placeholder="상세주소를 입력하세요">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-outline-dark" id="btn-addrSave">등록</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <tbody id="tbody">
                     {{#addrInfo}}
                     <input type="text" class="form-control" id="addrCode" value="{{addrCode}}" hidden>
@@ -78,61 +124,53 @@
                     {{/addrInfo}}
                     </tbody>
                 </table>
-                <!-- 배송지 등록 modal -->
-                <button type="button" class="btn btn-outline-dark float-right mb-3" data-toggle="modal" data-target="#addrSaveModal"> 배송지 등록 </button>
-                <!-- Modal -->
-                <div class="modal fade" id="addrSaveModal" tabindex="-1" role="dialog" aria-labelledby="addrModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addrModalLabel"> 배송지 등록 </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                {{#userInfo}}
-                                    <input type="text" class="form-control" id="id" value="{{id}}" hidden>
-                                {{/userInfo}}
-                                <div class="form-group">
-                                    <label for="addrNic">배송지 이름</label>
-                                    <input type="text" class="form-control" id="addrNic" placeholder="배송지 이름을 입력하세요">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">카드종류</th>
+                        <th scope="col">카드번호</th>
+                        <th scope="col">유효기간</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <!-- 카드 등록 modal -->
+                    <button type="button" class="btn btn-outline-dark float-right mt-5" data-toggle="modal" data-target="#cardSaveModal"> 카드 등록 </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="cardSaveModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="cardModalLabel"> 카드 등록 </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <div class="form-group">
-                                    <label for="addrName">수령인</label>
-                                    <input type="text" class="form-control" id="addrName" placeholder="수령인을 입력하세요">
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="cardNum">카드 번호</label>
+                                        <input type="text" class="form-control" id="cardNum" placeholder="카드번호를 입력하세요">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardPeriod">유효기간</label>
+                                        <input type="text" class="form-control" id="cardPeriod" placeholder="mm/yyyy">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardCVC">CVC번호</label>
+                                        <input type="text" class="form-control" id="cardCVC" placeholder="CVC번호를 입력하세요">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardVal">카드종류</label>
+                                        <input type="text" class="form-control" id="cardVal" placeholder="카드종류를 입력하세요">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="addrZip">우편번호</label>
-                                    <input type="text" class="form-control" id="addrZip" placeholder="우편번호를 입력하세요">
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-outline-dark" id="btn-cardSave">등록</button>
                                 </div>
-                                <div class="form-group">
-                                    <label for="addrBas">기본주소</label>
-                                    <input type="text" class="form-control" id="addrBas" placeholder="기본주소를 입력하세요">
-                                </div>
-                                <div class="form-group">
-                                    <label for="addrDet">상세주소</label>
-                                    <input type="text" class="form-control" id="addrDet" placeholder="상세주소를 입력하세요">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-dark" id="btn-addrSave">등록</button>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <table class="table">
-                    <thead class="thead-strong thead-dark">
-                    <tr>
-                        <th>카드종류</th>
-                        <th>카드번호</th>
-                        <th>유효기간</th>
-                        <th></th>
-                    </tr>
-                    </thead>
                     <tbody id="tbody">
                     {{#cardInfo}}
                     <tr>
@@ -146,46 +184,34 @@
                     {{/cardInfo}}
                     </tbody>
                 </table>
-                <!-- 카드 등록 modal -->
-                <button type="button" class="btn btn-outline-dark float-right" data-toggle="modal" data-target="#cardSaveModal"> 카드 등록 </button>
-                <!-- Modal -->
-                <div class="modal fade" id="cardSaveModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="cardModalLabel"> 카드 등록 </h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="cardNum">카드 번호</label>
-                                    <input type="text" class="form-control" id="cardNum" placeholder="카드번호를 입력하세요">
-                                </div>
-                                <div class="form-group">
-                                    <label for="cardPeriod">유효기간</label>
-                                    <input type="text" class="form-control" id="cardPeriod" placeholder="mm/yyyy">
-                                </div>
-                                <div class="form-group">
-                                    <label for="cardCVC">CVC번호</label>
-                                    <input type="text" class="form-control" id="cardCVC" placeholder="CVC번호를 입력하세요">
-                                </div>
-                                <div class="form-group">
-                                    <label for="cardVal">카드종류</label>
-                                    <input type="text" class="form-control" id="cardVal" placeholder="카드종류를 입력하세요">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-outline-dark" id="btn-cardSave">등록</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
+            {{/master}}
         </div>
+        <div>
+        <h1>주문</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">책이름</th>
+                <th scope="col">수량</th>
+                <th scope="col">가격</th>
+                <th scope="col">배송지</th>
+                <th scope="col">주문 시간</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#orderInfo}}
+                <tr>
+                    <td>{{books.bookName}}</td>
+                    <td>{{orderAmount}}</td>
+                    <td>{{orders.orderSum}}</td>
+                    <td>{{orders.orderBas}} {{orders.orderDet}}</td>
+                    <td>{{orders.orderDate}}</td>
+                </tr>
+            {{/orderInfo}}
+            </tbody>
+        </table>
+        <div>
     </div>
 </div>
 {{>layout/footer}}

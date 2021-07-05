@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
 @RequiredArgsConstructor
 @Controller
 public class BookController {
@@ -20,39 +19,48 @@ public class BookController {
     private final UsersService usersService;
     private final UsersInfo usersInfo;
 
-
-    //책등록
+    // 책등록
     @GetMapping("/books/bookSave")
     public String bookSave(Model model) {
-        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
+        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
         return "Book/bookSave";
     }
 
-    //책리스트
+    // 책리스트
     @GetMapping("/books/bookList")
     public String bookList(Model model) {
-        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
+        if (usersInfo.getUserId() != null) {
+            if (usersInfo.getUserId().equals("master")) {
+                model.addAttribute("master", usersService.findAllUsers(usersInfo));
+            }
+        }
+        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
         model.addAttribute("bookList", booksService.findAllBooks());
         return "Book/bookList";
     }
 
-    //책 상세정보
+    // 책 상세정보
     @GetMapping("/books/bookInfo/{isbn}")
     public String bookInfo(@PathVariable("isbn") String isbn, Model model) {
-        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
+        if (usersInfo.getUserId() != null) {
+            if (usersInfo.getUserId().equals("master")) {
+                model.addAttribute("master", usersService.findAllUsers(usersInfo));
+            }
+        }
+        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
         model.addAttribute("bookInfo", booksService.findBybookInfo(isbn));
         return "Book/bookInfo";
     }
 
-    //책 정보 수정
+    // 책 정보 수정
     @GetMapping("/books/bookUpdate/{isbn}")
     public String bookUpdate(@PathVariable("isbn") String isbn, Model model) {
-        model.addAttribute("userInfo", usersService.findAllUsers(usersInfo.getUserId()));
+        model.addAttribute("usersInfo", usersService.findAllUsers(usersInfo));
         model.addAttribute("bookInfo", booksService.findBybookInfo(isbn));
         return "Book/bookUpdate";
     }
 
-    //책정보
+    // 책정보
     @GetMapping("/books/bookInfo")
     public ResponseEntity<?> bookInfo() {
         ApiResponse result = null;

@@ -1,7 +1,5 @@
 package com.project.bookstore.web.Users.dto.Basket;
 
-import java.util.Date;
-
 import com.project.bookstore.domain.Basket.Basket;
 import com.project.bookstore.domain.Users.Users;
 
@@ -14,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BasketCreateDto {
     private Users users;
-    private Date basCre;
+    private String basCre;
     private Long basSum;
 
     public Basket toEntity() {

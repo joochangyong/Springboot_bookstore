@@ -2,7 +2,6 @@ package com.project.bookstore.web.Users;
 
 import com.project.bookstore.config.ApiResponse;
 import com.project.bookstore.service.basket.BasketService;
-import com.project.bookstore.session.UsersInfo;
 import com.project.bookstore.web.Users.dto.Basket.BasketCreateDto;
 import com.project.bookstore.web.Users.dto.Basket.BasketInsertDto;
 
@@ -24,21 +23,17 @@ import lombok.RequiredArgsConstructor;
 
 public class BasketApiController {
     private final BasketService basketService;
-    private final UsersInfo usersInfo;
 
     @ApiOperation(value = "장바구니")
     @PostMapping("/basket/{isbn}")
     public ResponseEntity<?> bookInsert (@PathVariable("isbn") String isbn, BasketCreateDto basketCreateDto, @RequestBody BasketInsertDto basketInsertDto) {
         ApiResponse result = null;
         try {
-            if (basketService.basketFind(usersInfo) == false) {
-                basketCreateDto.setUsers(basketService.findUsers(usersInfo));
+            if (basketService.basketFind() == false) {
+                basketCreateDto.setUsers(basketService.findUsers());
                 basketService.basketInsert(basketCreateDto);
             }
-            
-            result = new ApiResponse(true, "성공", basketService.basketinfoInsert(isbn, basketInsertDto, usersInfo));
-            System.out.println("수량확인");
-            System.out.println(basketInsertDto.getBasAmount());
+            result = new ApiResponse(true, "성공", basketService.basketInfoInsert(isbn, basketInsertDto));
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,4 +41,11 @@ public class BasketApiController {
             return ResponseEntity.badRequest().body(result);
         }
     }
+
+    // @ApiOperation(value = "장바구니")
+    // @DeleteMapping("/basket/delete/{book_isbn}")
+    // public String delete(@PathVariable("book_isbn") String book_isbn) {
+    //     basketService.delete(book_isbn);
+    //     return book_isbn;
+    // }
 } 
